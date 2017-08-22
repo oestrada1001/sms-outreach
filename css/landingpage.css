@@ -1,0 +1,302 @@
+/* Dropdown Subscription Modal */
+#subscription_bg{
+    padding: 10px;
+    z-index: 100;
+    position: inherit;
+    background-color: white;
+}
+#subscription_bg .container{
+    padding-right: 0px;
+}
+#subscription_bg h3{
+    margin: 5px;
+}
+#subscription_bg button{
+    font-size: 16px;
+    float: right;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.fa-envelope-open{
+    margin: 0 0 0 15px;
+}
+.modal-backdrop.in{
+    z-index: 0;
+}
+#marketing_modal .modal-dialog{
+    max-width: 1000px;}
+    @media (max-width: 780px){
+        #marketing_modal .modal-dialog{
+            width: 80%;
+            margin: auto;
+        }
+    }
+#marketing_modal .modal-content{
+    margin-top: 30px;
+    min-height: 400px;
+    border-radius: 0px;
+    background-image: url('../img/subscription_image.png');
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+}
+#marketing_modal .modal-body{
+    position: relative;
+    padding: 0px !important;
+}
+#marketing_modal .modal-body a{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 100;
+    color: inherit;
+    text-shadow: -1px 1px 0px white;
+}
+#marketing_modal .subscription_content{
+    padding: 30px 50px 50px;
+    text-shadow: -1px 1px 0px white;
+}
+#marketing_modal input, #marketing_modal select{
+    margin-bottom: 20px;
+}
+#marketing_modal button{
+    width: 100%;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+/* Home - Landing Page */
+video{
+    position: absolute;
+}
+@media(max-width: 1024px){
+    video{
+        height: 100%;
+    }
+}
+#topRow{
+    margin-bottom: 50px;
+}
+@media(max-width: 1000px){
+    #topRow{
+        margin-bottom: 0px;
+    }
+}
+#app_carousel .carousel-indicators{
+    display: none;
+}
+#app_carousel .carousel-inner{
+    min-height: initial;
+}
+#screen_slide{
+    margin-bottom: 50px;
+}
+@media(max-width: 800px){
+    #calltoaction{
+        margin: 0;
+    }
+}
+#calltoaction-h1{
+    margin-top: 20px;
+}
+#calltoaction .lj-buttons{
+    margin-top: 0px;
+}
+#check-list{
+    display: table;
+    margin: auto;
+    color: white;
+}
+#check-list .fa{
+    margin-right: 10px;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: rgba(0, 255, 0, 0.5);
+}
+#check-list p{
+    font-size: 20px;
+    font-style: italic;
+    
+}
+.lj-title{
+    margin-top: 10vh;
+}
+#firstCon{
+    padding-top: 20px;
+}
+#member{
+    margin: 0px 25px 0px;
+    color: white;
+}
+#followers .fa{
+    width: 35px;
+}
+#followers .fa:hover{
+    color: #2cbf6d;
+}
+/* Logo */
+.lj-logo a, .lj-logo img{
+    width: 100%;
+    height: initial;}
+  @media (min-width: 300px) {
+    .lj-logo a, .lj-logo img{
+        width: 75%;
+        margin: 20px auto 0px;} }
+  @media (min-width: 768px) {
+    .lj-logo a, .lj-logo img{
+      width: 100%;
+      height: initial;
+      margin: 10px 0px;} }
+/* Nav bar */
+#topNav ul{
+    list-style: none;
+    margin: 65px 0;
+}
+#topNav li{
+    display: inline-block;
+    margin-left: 40px;
+}
+#topNav ul li a{
+    color: white;
+    font-size: 18px;
+}
+#login-btn{
+    margin-top: 50px;
+}
+.lj-scroll-down{
+    margin-top: 75px;
+}
+#app_carousel{
+    width: 100%;
+}
+.carousel-indicators{
+    margin-bottom: 50px;
+}
+.lj-overlay-color{
+    background-color: rgba(60,65,80,0.8);
+}
+/* Registration Page */
+
+#topNav{
+    background-color: #2b2f3e;
+    min-height: 100px;
+}
+#subscription_content{
+    margin-top: 30px;   
+}
+#webAppPrev img{
+    width: 750px;
+}
+#subscription_content .row{
+    margin-bottom: 20px;
+}
+/* Content Slider */
+.carousel-inner{
+    min-height: 515px;
+}
+.carousel-indicators {
+	bottom:15px;
+	width:auto;
+	margin-left:0;
+}
+.carousel-indicators li {
+	border-radius:0;
+	width:8px;
+	height:8px;
+	background:#fff;
+    border: solid #3276b1 1px;
+    border-radius: 50px;
+}
+.carousel-indicators .active {
+	width:10px;
+	height:10px;
+	background:#3276b1;
+	border-color:#3276b1;
+}
+#beta_table{
+    width: 60%;
+    margin: auto;
+}
+#register_body .contact{
+    padding-top: 40px;
+}
+/* Confirm Page */
+#confirm_body ul{
+    list-style: none;
+}
+#confirm_body li{
+    margin: 5px 0px;
+}
+#confirm_body .fa{
+    padding: 0px 10px;
+}
+/* Verified Email Page */
+#verify_body .fa-5x{
+    font-size: 450px;
+    color: #991F1F;
+}
+#form-size{
+    margin: auto;
+    max-width: 500px;
+    width: 80%;
+}
+#form-size input[type="password"]{
+    height: 45px;
+    text-align: center;
+}
+#submit_password{
+    margin: 20px;
+    padding: 15px;
+    max-width: 200px;
+    width: 80%;
+    font-size: 18px;
+}
+#error, #error1 {
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 10px 0px;
+    border-radius: 2px;
+}
+#success{
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    margin: 10px 0px;
+    border-radius: 2px;
+}
+/* Forgot Password Page */
+#forgot_page{
+    height: 50%;
+    min-height: 400px;
+}
+#forgot_page h1{
+    margin-bottom: 150px;
+    text-align: center;
+}
+#forgot_page .col-md-6{
+    margin: auto;
+    float: none;
+}
+#forgot_page .btn-primary{
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 18px;
+}
+/*Privacy and Conditions Wrapper*/
+.wrapper{
+    padding: 40px 0;
+    margin: 20px 0;
+}
+.wrapper a{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 40px 15px 40px;
+}
+/* Confirm Subscription Page */
+#confirm_subscription{
+    height: 50%;
+    min-height: 200px;
+}
+/* Switch Tables */
+.do-not-display{
+    display: none;
+}

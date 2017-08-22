@@ -1,0 +1,94 @@
+[20-Jul-2017 13:35:57 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:35:57 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:36:10 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:36:10 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:37:14 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:37:14 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:38:38 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:38:38 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:41:33 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:41:33 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:43:03 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:43:03 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:44:56 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:44:56 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:45:06 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:45:06 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:35 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:35 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:44 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:44 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:45 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:45 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:47 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:47 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:48 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:48 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:49 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:49 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:50 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:50 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:51 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:51 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:51 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:51 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:51 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:51 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:52 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:46:52 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 2
+[20-Jul-2017 13:49:20 America/New_York] PHP Warning:  require_once(../preview_links.php): failed to open stream: No such file or directory in /home/bluewgsx/public_html/live_preview/dashboard.php on line 3
+[20-Jul-2017 13:49:20 America/New_York] PHP Fatal error:  require_once(): Failed opening required '../preview_links.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/bluewgsx/public_html/live_preview/dashboard.php on line 3
+[20-Jul-2017 10:50:44 America/Los_Angeles] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/bluewgsx/public_html/live_preview/dashboard.php:122) in /home/bluewgsx/public_html/live_preview/home_process.php on line 6
+[20-Jul-2017 10:50:44 America/Los_Angeles] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/bluewgsx/public_html/live_preview/dashboard.php:122) in /home/bluewgsx/public_html/live_preview/home_process.php on line 19
+[20-Jul-2017 10:51:08 America/Los_Angeles] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/bluewgsx/public_html/live_preview/dashboard.php:122) in /home/bluewgsx/public_html/live_preview/home_process.php on line 6
+[20-Jul-2017 10:51:08 America/Los_Angeles] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/bluewgsx/public_html/live_preview/dashboard.php:122) in /home/bluewgsx/public_html/live_preview/home_process.php on line 19
+[02-Aug-2017 11:35:56 America/Los_Angeles] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, array given' in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php:55
+Stack trace:
+#0 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(55): DateTime->__construct(Array)
+#1 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(85): uptoNow('2017-08-02', Array, 'd', '2017-08-02')
+#2 /home/bluewgsx/public_html/live_preview/home_process.php(15): include('/home/bluewgsx/...')
+#3 /home/bluewgsx/public_html/live_preview/dashboard.php(175): include('/home/bluewgsx/...')
+#4 {main}
+  thrown in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 55
+[02-Aug-2017 11:36:59 America/Los_Angeles] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, array given' in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php:55
+Stack trace:
+#0 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(55): DateTime->__construct(Array)
+#1 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(85): uptoNow('2017-08-02', Array, 'd', '2017-08-02')
+#2 /home/bluewgsx/public_html/live_preview/home_process.php(15): include('/home/bluewgsx/...')
+#3 /home/bluewgsx/public_html/live_preview/dashboard.php(175): include('/home/bluewgsx/...')
+#4 {main}
+  thrown in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 55
+[02-Aug-2017 11:40:21 America/Los_Angeles] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, array given' in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php:55
+Stack trace:
+#0 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(55): DateTime->__construct(Array)
+#1 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(85): uptoNow('2017-08-02', Array, 'd', '2017-08-02')
+#2 /home/bluewgsx/public_html/live_preview/home_process.php(15): include('/home/bluewgsx/...')
+#3 /home/bluewgsx/public_html/live_preview/dashboard.php(175): include('/home/bluewgsx/...')
+#4 {main}
+  thrown in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 55
+[02-Aug-2017 11:43:00 America/Los_Angeles] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, object given' in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php:40
+Stack trace:
+#0 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(40): DateTime->__construct(Object(DateTime))
+#1 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(93): uptoNow('2017-08-02', Array, 'd', '2017-08-02')
+#2 /home/bluewgsx/public_html/live_preview/home_process.php(15): include('/home/bluewgsx/...')
+#3 /home/bluewgsx/public_html/live_preview/dashboard.php(175): include('/home/bluewgsx/...')
+#4 {main}
+  thrown in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 40
+[02-Aug-2017 11:43:42 America/Los_Angeles] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, object given' in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php:40
+Stack trace:
+#0 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(40): DateTime->__construct(Object(DateTime))
+#1 /home/bluewgsx/public_html/live_preview/client/dashboard_home.php(93): uptoNow('2017-08-02', Array, 'd', '2017-08-02')
+#2 /home/bluewgsx/public_html/live_preview/home_process.php(15): include('/home/bluewgsx/...')
+#3 /home/bluewgsx/public_html/live_preview/dashboard.php(175): include('/home/bluewgsx/...')
+#4 {main}
+  thrown in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 40
+[02-Aug-2017 12:08:44 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 51
+[02-Aug-2017 12:08:44 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 51
+[02-Aug-2017 12:08:44 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 51
+[02-Aug-2017 12:10:12 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 52
+[02-Aug-2017 12:10:12 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 52
+[02-Aug-2017 12:10:12 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 52
+[02-Aug-2017 12:10:36 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 52
+[02-Aug-2017 12:10:36 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 52
+[02-Aug-2017 12:10:36 America/Los_Angeles] PHP Notice:  Undefined variable: array in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 52
+[02-Aug-2017 12:13:39 America/Los_Angeles] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home/bluewgsx/public_html/live_preview/client/dashboard_home.php on line 45

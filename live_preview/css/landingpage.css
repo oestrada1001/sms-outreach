@@ -1,0 +1,161 @@
+/* Home - Landing Page */
+.lj-title{
+    margin-top: 10vh;
+}
+#firstCon{
+    padding-top: 50px;
+}
+#member{
+    margin: 0px 25px 0px;
+    color: white;
+}
+#startup:hover, #professional:hover, #investor:hover{
+    background-color: #991F1F;
+}
+#followers .fa{
+    width: 35px;
+}
+#followers .fa:hover{
+    color: #2cbf6d;
+}
+/* Logo */
+.lj-logo a, .lj-logo img{
+    width: 100%;
+    height: initial;}
+  @media (min-width: 300px) {
+    .lj-logo a, .lj-logo img{
+        width: 75%;
+        margin: 20px auto 0px;} }
+  @media (min-width: 768px) {
+    .lj-logo a, .lj-logo img{
+      width: 100%;
+      height: initial;
+      margin: 10px 0px;} }
+/* Nav bar */
+#topNav ul{
+    list-style: none;
+    margin: 65px 0;
+}
+#topNav li{
+    display: inline-block;
+    margin-left: 40px;
+}
+#topNav ul li a{
+    color: white;
+    font-size: 18px;
+}
+/* Registration Page */
+
+#topNav{
+    background-color: #2b2f3e;
+    min-height: 100px;
+}
+#subscription_content{
+    margin-top: 30px;   
+}
+#webAppPrev img{
+    width: 750px;
+}
+#subscription_content .row{
+    margin-bottom: 20px;
+}
+/* Content Slider */
+.carousel-inner{
+    min-height: 515px;
+}
+.carousel-indicators {
+	bottom:15px;
+	width:auto;
+	margin-left:0;
+}
+.carousel-indicators li {
+	border-radius:0;
+	width:8px;
+	height:8px;
+	background:#fff;
+    border: solid #3276b1 1px;
+    border-radius: 50px;
+}
+.carousel-indicators .active {
+	width:10px;
+	height:10px;
+	background:#3276b1;
+	border-color:#3276b1;
+}
+#beta_table{
+    width: 60%;
+    margin: auto;
+}
+#register_body .contact{
+    padding-top: 40px;
+}
+/* Confirm Page */
+#confirm_body ul{
+    list-style: none;
+}
+#confirm_body li{
+    margin: 5px 0px;
+}
+#confirm_body .fa{
+    padding: 0px 10px;
+}
+/* Verified Email Page */
+#verify_body .fa-5x{
+    font-size: 450px;
+    color: #991F1F;
+}
+#form-size{
+    margin: auto;
+    max-width: 500px;
+    width: 80%;
+}
+#form-size input[type="password"]{
+    height: 45px;
+    text-align: center;
+}
+#submit_password{
+    margin: 20px;
+    padding: 15px;
+    max-width: 200px;
+    width: 80%;
+    font-size: 18px;
+}
+#error, #error1 {
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 10px 0px;
+    border-radius: 2px;
+}
+#success{
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    margin: 10px 0px;
+    border-radius: 2px;
+}
+/* Forgot Password Page */
+#forgot_page{
+    height: 50%;
+}
+#forgot_page h1{
+    margin-bottom: 150px;
+    text-align: center;
+}
+#forgot_page .col-md-6{
+    margin: auto;
+    float: none;
+}
+#forgot_page .btn-primary{
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 18px;
+}
+/*Privacy and Conditions Wrapper*/
+.wrapper{
+    padding: 40px 0;
+    margin: 20px 0;
+}
+.wrapper a{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 40px 15px 40px;
+}

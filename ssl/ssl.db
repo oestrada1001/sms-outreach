@@ -1,0 +1,72 @@
+--- 
+files: 
+  certificate: 
+    www_blueskylinemarketing_com_df063_4fc71_1528675199_74dfae330b5b3a4a823195f7334ee2ef: 
+      created: '1497116562'
+      domains: 
+        - www.blueskylinemarketing.com
+        - blueskylinemarketing.com
+      friendly_name: www.blueskylinemarketing.com and blueskylinemarketing.com
+      id: www_blueskylinemarketing_com_df063_4fc71_1528675199_74dfae330b5b3a4a823195f7334ee2ef
+      is_self_signed: 0
+      issuer.commonName: COMODO RSA Domain Validation Secure Server CA
+      issuer.organizationName: COMODO CA Limited
+      modulus: df063723e7dcd78c7137ad64553cd1b96f77145ffcac4fb57c3b1f404c0020362d3127820320f256e7dd4e386270d7791d975cec8847b43ae05c65e406bf295d29a1534af636a00fa920e668c78d585fd4aff4553fb91f6696b1c0f0be552a5248bda125857dcfe6e5edeba5d0f95b281b388dc8ad68ab723e3d7ba668cfd3c7c100cf7ccc845f8fd0ed905ee8a91eed07ad23b3bd007582d8461b029f8e6c91102be8e92a3617f45fa8c40a557163ae788f4d13f8d9f4b4222d7f9f69b9193ee2b7ae4c75d7f4e04003bb80a414303a0bf4d07902e90530994ae1cfb0ba9776aa5b4b588044fd915ff936c8187afb604e5e7a29cde53602637f3cff4644fc71
+      modulus_length: 2048
+      not_after: '1528675199'
+      not_before: '1497052800'
+      signature_algorithm: sha256WithRSAEncryption
+      subject.commonName: www.blueskylinemarketing.com
+      validation_type: dv
+  csr: 
+    blueskylinemarketing_com_ba581_d33b3_7cb07640d71f4ec3bc13c62b84bb7587: 
+      commonName: blueskylinemarketing.com
+      created: '1497115956'
+      domains: 
+        - blueskylinemarketing.com
+        - www.blueskylinemarketing.com
+      friendly_name: blueskylinemarketing.com and www.blueskylinemarketing.com
+      id: blueskylinemarketing_com_ba581_d33b3_7cb07640d71f4ec3bc13c62b84bb7587
+      modulus: ba581b7759514930942e0647a912ea5160a361df1f17064dd3f8c30a43c1e14bc63342d0b6e650500732b219cca1c2c2578dba395b02656b4cd4c6173e51e31b2cf0c9e8715bba5bb3b1d2e41fd17b3f748a1f24c78af331bbff54613e4b61465ebb3b9738c83a37309bff023ba9024d37784db9923baf76aaace1bb86b53699962462126d737047a3f1d861e78a1a196678123c0122c41cf0764ab18bd2cf53d466e82c1b6d0b50d0c85762a32c079b613fc856bf551be9c9ac2f5709610722ff5ec503df1b572d304a435b585985454a22d940898ee86d39aaa90f025804d0a0ffe5eef6f09bc76fb85f1ae5a091d900042dd968b1f9adadf84fa758ad33b3
+  key: 
+    ba581_d33b3_13eff7782d0bff4be1a0e9c5a13ecae2: 
+      created: '1497115956'
+      friendly_name: blueskylinemarketing.com and www.blueskylinemarketing.com
+      id: ba581_d33b3_13eff7782d0bff4be1a0e9c5a13ecae2
+      modulus: ba581b7759514930942e0647a912ea5160a361df1f17064dd3f8c30a43c1e14bc63342d0b6e650500732b219cca1c2c2578dba395b02656b4cd4c6173e51e31b2cf0c9e8715bba5bb3b1d2e41fd17b3f748a1f24c78af331bbff54613e4b61465ebb3b9738c83a37309bff023ba9024d37784db9923baf76aaace1bb86b53699962462126d737047a3f1d861e78a1a196678123c0122c41cf0764ab18bd2cf53d466e82c1b6d0b50d0c85762a32c079b613fc856bf551be9c9ac2f5709610722ff5ec503df1b572d304a435b585985454a22d940898ee86d39aaa90f025804d0a0ffe5eef6f09bc76fb85f1ae5a091d900042dd968b1f9adadf84fa758ad33b3
+      modulus_length: 2048
+    df063_4fc71_6155c3040beb0c0a8fb78541dab4a61e: 
+      created: '1497115010'
+      friendly_name: www.blueskylinemarketing.com and blueskylinemarketing.com
+      id: df063_4fc71_6155c3040beb0c0a8fb78541dab4a61e
+      modulus: df063723e7dcd78c7137ad64553cd1b96f77145ffcac4fb57c3b1f404c0020362d3127820320f256e7dd4e386270d7791d975cec8847b43ae05c65e406bf295d29a1534af636a00fa920e668c78d585fd4aff4553fb91f6696b1c0f0be552a5248bda125857dcfe6e5edeba5d0f95b281b388dc8ad68ab723e3d7ba668cfd3c7c100cf7ccc845f8fd0ed905ee8a91eed07ad23b3bd007582d8461b029f8e6c91102be8e92a3617f45fa8c40a557163ae788f4d13f8d9f4b4222d7f9f69b9193ee2b7ae4c75d7f4e04003bb80a414303a0bf4d07902e90530994ae1cfb0ba9776aa5b4b588044fd915ff936c8187afb604e5e7a29cde53602637f3cff4644fc71
+      modulus_length: 2048
+indexes: 
+  certificate: 
+    modulus: 
+      df063723e7dcd78c7137ad64553cd1b96f77145ffcac4fb57c3b1f404c0020362d3127820320f256e7dd4e386270d7791d975cec8847b43ae05c65e406bf295d29a1534af636a00fa920e668c78d585fd4aff4553fb91f6696b1c0f0be552a5248bda125857dcfe6e5edeba5d0f95b281b388dc8ad68ab723e3d7ba668cfd3c7c100cf7ccc845f8fd0ed905ee8a91eed07ad23b3bd007582d8461b029f8e6c91102be8e92a3617f45fa8c40a557163ae788f4d13f8d9f4b4222d7f9f69b9193ee2b7ae4c75d7f4e04003bb80a414303a0bf4d07902e90530994ae1cfb0ba9776aa5b4b588044fd915ff936c8187afb604e5e7a29cde53602637f3cff4644fc71: 
+        www_blueskylinemarketing_com_df063_4fc71_1528675199_74dfae330b5b3a4a823195f7334ee2ef: ~
+    subject.commonName: 
+      www.blueskylinemarketing.com: 
+        www_blueskylinemarketing_com_df063_4fc71_1528675199_74dfae330b5b3a4a823195f7334ee2ef: ~
+  csr: 
+    commonName: 
+      blueskylinemarketing.com: 
+        blueskylinemarketing_com_ba581_d33b3_7cb07640d71f4ec3bc13c62b84bb7587: ~
+    modulus: 
+      ba581b7759514930942e0647a912ea5160a361df1f17064dd3f8c30a43c1e14bc63342d0b6e650500732b219cca1c2c2578dba395b02656b4cd4c6173e51e31b2cf0c9e8715bba5bb3b1d2e41fd17b3f748a1f24c78af331bbff54613e4b61465ebb3b9738c83a37309bff023ba9024d37784db9923baf76aaace1bb86b53699962462126d737047a3f1d861e78a1a196678123c0122c41cf0764ab18bd2cf53d466e82c1b6d0b50d0c85762a32c079b613fc856bf551be9c9ac2f5709610722ff5ec503df1b572d304a435b585985454a22d940898ee86d39aaa90f025804d0a0ffe5eef6f09bc76fb85f1ae5a091d900042dd968b1f9adadf84fa758ad33b3: 
+        blueskylinemarketing_com_ba581_d33b3_7cb07640d71f4ec3bc13c62b84bb7587: ~
+uniques: 
+  certificate: 
+    friendly_name: 
+      www.blueskylinemarketing.com and blueskylinemarketing.com: www_blueskylinemarketing_com_df063_4fc71_1528675199_74dfae330b5b3a4a823195f7334ee2ef
+  csr: 
+    friendly_name: 
+      blueskylinemarketing.com and www.blueskylinemarketing.com: blueskylinemarketing_com_ba581_d33b3_7cb07640d71f4ec3bc13c62b84bb7587
+  key: 
+    friendly_name: 
+      blueskylinemarketing.com and www.blueskylinemarketing.com: ba581_d33b3_13eff7782d0bff4be1a0e9c5a13ecae2
+      www.blueskylinemarketing.com and blueskylinemarketing.com: df063_4fc71_6155c3040beb0c0a8fb78541dab4a61e
+    modulus: 
+      ba581b7759514930942e0647a912ea5160a361df1f17064dd3f8c30a43c1e14bc63342d0b6e650500732b219cca1c2c2578dba395b02656b4cd4c6173e51e31b2cf0c9e8715bba5bb3b1d2e41fd17b3f748a1f24c78af331bbff54613e4b61465ebb3b9738c83a37309bff023ba9024d37784db9923baf76aaace1bb86b53699962462126d737047a3f1d861e78a1a196678123c0122c41cf0764ab18bd2cf53d466e82c1b6d0b50d0c85762a32c079b613fc856bf551be9c9ac2f5709610722ff5ec503df1b572d304a435b585985454a22d940898ee86d39aaa90f025804d0a0ffe5eef6f09bc76fb85f1ae5a091d900042dd968b1f9adadf84fa758ad33b3: ba581_d33b3_13eff7782d0bff4be1a0e9c5a13ecae2
+      df063723e7dcd78c7137ad64553cd1b96f77145ffcac4fb57c3b1f404c0020362d3127820320f256e7dd4e386270d7791d975cec8847b43ae05c65e406bf295d29a1534af636a00fa920e668c78d585fd4aff4553fb91f6696b1c0f0be552a5248bda125857dcfe6e5edeba5d0f95b281b388dc8ad68ab723e3d7ba668cfd3c7c100cf7ccc845f8fd0ed905ee8a91eed07ad23b3bd007582d8461b029f8e6c91102be8e92a3617f45fa8c40a557163ae788f4d13f8d9f4b4222d7f9f69b9193ee2b7ae4c75d7f4e04003bb80a414303a0bf4d07902e90530994ae1cfb0ba9776aa5b4b588044fd915ff936c8187afb604e5e7a29cde53602637f3cff4644fc71: df063_4fc71_6155c3040beb0c0a8fb78541dab4a61e

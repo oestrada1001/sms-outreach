@@ -1,0 +1,6 @@
+[08-Jul-2017 12:36:51 America/Los_Angeles] PHP Notice:  Undefined index: email in /home/bluewgsx/public_html/session.php on line 7
+[08-Jul-2017 12:36:51 America/Los_Angeles] PHP Notice:  Undefined index: count in /home/bluewgsx/public_html/session.php on line 8
+[08-Jul-2017 12:36:51 America/Los_Angeles] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/bluewgsx/public_html/session.php on line 14
+[26-Jul-2017 16:22:50 America/Los_Angeles] PHP Notice:  Undefined index: email in /home/bluewgsx/public_html/session.php on line 7
+[26-Jul-2017 16:22:50 America/Los_Angeles] PHP Notice:  Undefined index: count in /home/bluewgsx/public_html/session.php on line 8
+[26-Jul-2017 16:22:50 America/Los_Angeles] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/bluewgsx/public_html/session.php on line 14

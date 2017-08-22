@@ -1,0 +1,14 @@
+
+RewriteEngine on
+AuthName "Blue Skyline Marketing"
+AuthUserFile "/home/bluewgsx/.htpasswds/public_html/passwd"
+RewriteCond %{HTTP_HOST} ^blueskylinemarketing\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.blueskylinemarketing\.com$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^twilio\-php\-master\/?(.*)$ "https\:\/\/www\.blueskylinemarketing\.com\/$1" [R=301,L]
+RewriteCond %{HTTP_HOST} ^blueskylinemarketing\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.blueskylinemarketing\.com$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^admin\/?(.*)$ "https\:\/\/www\.blueskylinemarketing\.com\/$1" [R=301,L]

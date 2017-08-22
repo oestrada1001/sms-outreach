@@ -1,0 +1,189 @@
+/*Skin*/
+.skin-red .main-header .navbar{
+    background-color: #3c8dbc;
+}
+.skin-red .main-header .navbar .sidebar-toggle:hover{
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.skin-red .main-header .logo{
+    background-color: inherit;
+}
+.skin-red .main-header .logo:hover{
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.skin-red .sidebar-menu > li.active > a{
+    border-left-color: #3c8dbc;
+}
+.user-panel{ 
+    position: initial;
+}
+.info{
+    font-size: 18px;
+    margin-left: -17px;
+}
+.sidebar-menu{
+    margin-top: 20px;
+}
+.navbar-custom-menu i{
+    margin: 0 10px;
+}
+/* Tour Popup */
+.popover-title{
+    text-align: center !important;
+    font-weight: bold !important;
+}
+hr{
+    border-top: 1px solid #3c8dbc;
+}
+/*Error & Success Boxes*/
+#error, #error1 {
+    text-align: initial !Important;
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin: 10px 0px;
+    border-radius: 2px;
+}
+#error i, #error1 i{
+    margin:10px 10px;
+    font-size:2em;
+    vertical-align:middle;     
+}
+#success{
+    text-align: initial !Important;
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    margin: 10px 0px;
+    border-radius: 2px;
+}
+#success i{
+    margin:10px 10px;
+    font-size:2em;
+    vertical-align:middle;      
+}
+/*Loader*/
+#loader{
+    position:relative;
+    z-index: 10;    
+}
+#loader img{
+    position:absolute;
+    top: -50px;
+    left: 120px;
+    
+}
+/*Login Page*/
+.login-box-msg{
+    display: block;
+    text-align: initial;
+    padding: 0px 0px 10px 0px;
+    font-size: 18px;
+    
+}
+.login-box{
+    margin:auto;
+    padding-top: 10%;
+}
+.forgotPassword{
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+}
+.btn-center{
+    width: 100%;
+}
+/*Client Pages*/
+/* Dashboard */
+#client-home-dashboard h2{
+    font-size: 20px;
+}
+.small-box h2{
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: solid 1.5px white;
+    text-align: center;
+    padding-bottom: 15px;
+}
+#client-home-dashboard table{
+    font-size: 18px;
+}
+.table-striped>tbody>tr:nth-of-type(odd){
+    background-color: rgba(255,255,255,.3);
+}
+/*welcome*/
+.register-logo{
+    text-transform: capitalize;
+}
+.rightOut{
+    display: block;
+    text-align: right;
+    padding: 30px 50px 0 0px;
+}
+.rightOut a{
+    margin-left: 20px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{/*table*/
+    padding: 0;
+}
+#toDashboard .modal-body{
+    padding-top: 0px;
+}
+#subModal .modal-content{
+    width: 100%;
+}
+#subResponse{
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+/*View & Edit SMS */
+#viewSMS .box, #editSMS .box, #settings .box{
+    padding: 10px;
+}
+#editSMS label{
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+#viewSMS input, #editSMS .righty{
+    float:right;
+}
+/*settings*/
+table tr td{
+    position: relative;
+}
+table tr td span{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+table tr td span:hover{
+    background-color:skyblue !important;
+}
+/*Modal*/
+.modal-dialog{
+    margin: 10% auto;
+}
+.modal-header{
+    position: relative;
+}
+.modal-header button{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+#modalID{
+    font-size: 18px;
+    text-transform: capitalize;
+}
+.modal-content{
+    width: 60%;
+    text-align: center;
+    margin: auto;
+    border-radius: 2px;
+}
+.updateInput{
+    text-align: center;
+    font-size: 16px;
+}
+.updateButton{
+    text-transform: capitalize;
+    margin-top: 20px;
+}
