@@ -3,7 +3,9 @@ require_once '../session.php';
 require_once '../functions.php';
 require_once 'header.php';
 
+$_SESSION['plan'] = null;
 $plan = $_GET['plan'];
+$_SESSION['plan'] = $plan;
 
 $page_content = subscription_data($plan);
 

@@ -14,6 +14,14 @@ $sql = "SELECT * FROM clients WHERE subscription_link = '$subscription_link'";
 $ses_sql = mysqli_query($db_connect, $sql);
 $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
 
+$business_email = $row['email'];
+
+//This is their twilio service information
+$clients_twilio_sql = "SELECT * FROM twilio_service WHERE email = '$business_email'";
+$clients_twilio_results = mysqli_query($db_connect, $clients_twilio_sql);
+$clients_twilio = mysqli_fetch_array($clients_twilio_results, MYSQLI_ASSOC);
+$clients_MSiD = $clients_twilio['message_service_id'];
+
 $_SESSION['business_name'] = $row['business_name'];
 
 if($row['default_message'] == null){
@@ -123,11 +131,11 @@ if(!$db_connect){ //database cannot connection
                     $sub_cell = str_replace($remove, '',$sub_cell);
                     
                     $sub_cell = '+1'.$sub_cell;
-                    $default_message = $row['default_message'] . "\n To unsubscribe reply with STOP or HELP for more infomation.";
+                    $default_message = $row['default_message'] . "\n\n Please reply with 'Yes' to complete your subscription. \n\n To unsubscribe reply with STOP or HELP for more infomation.";
                     $client->messages->create(
                         $sub_cell,
                         array(
-                            'messagingServiceSid' => "MG8d8c7a3e572bd31e29103c7d3476da20",
+                            'messagingServiceSid' => "$clients_MSiD",
                             'body' => $default_message,
                         )
                     );
@@ -135,7 +143,7 @@ if(!$db_connect){ //database cannot connection
                     //Getting insert_sql from top
                     mysqli_query($db_connect, $insert_sql);
                     
-                    echo 'Thank you for subscribing. We will be sending you a confirmation text so be sure to text <b>YES</b> to the message you will receive in order to receive our messages.';
+                    echo 'Thank you for subscribing. We will be sending you a confirmation text so be sure to text <b>YES</b> to the message you will receive in order to complete your subscription.';
                     exit;
                 }
                 

@@ -1,11 +1,12 @@
 <?php
 require_once('../stripe4-x/stripe-php-4.13.0/init.php');
 require_once('../twilio-php-master/Twilio/autoload.php');
-use Twilio\Rest\Client; 
 require_once('../session.php');
 require_once('../functions.php');
 require_once('../validation/back_end_validation.php');
 \Stripe\Stripe::setApiKey("sk_live_1teGqmhHeAwmjkmdkINqxbqp");
+
+use Twilio\Rest\Client;
 
 session_start();
 
@@ -34,27 +35,27 @@ if(!$db_connect){
     
     if(!preg_match($valid_name, $first_name)){
         $_SESSION['email_biz_error'] = 'Invalid First Name.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" .$_SESSION['plan']);
         exit;
     }
     if(!preg_match($valid_name, $last_name)){
         $_SESSION['email_biz_error'] = 'Invalid Last Name.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" .$_SESSION['plan']);
         exit;
     }
     if(!preg_match($valid_phone_number, $phone_number)){
         $_SESSION['email_biz_error'] = 'Invalid Phone Number.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" .$_SESSION['plan']);
         exit;
     }
     if(!preg_match($valid_email, $email)){
         $_SESSION['email_biz_error'] = 'Invalid Email.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" .$_SESSION['plan']);
         exit;
     }
     if(!preg_match($valid_business_name, $businessName)){
         $_SESSION['email_biz_error'] = 'Invalid Business Name.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" .$_SESSION['plan']);
         exit;
     }
 //    if(!preg_match($valid_short_string, $subscription_type)){
@@ -90,15 +91,15 @@ if(!$db_connect){
     
     if(($email_result >= 1 || $admin_result >=1) && $business_result >= 1){
         $_SESSION['email_biz_error'] = 'Email and business name already taken, please try again.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" .$_SESSION['plan']);
         exit;
     }elseif(($email_result >= 1 || $admin_result >= 1) && $business_result == 0){
         $_SESSION['email_biz_error'] = 'Email already taken, please try again.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" .$_SESSION['plan']);
         exit;
     }elseif($email_result == 0 && $business_result >= 1 && $admin_result == 0){
         $_SESSION['email_biz_error'] = 'Business name already taken, please try again.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" .$_SESSION['plan']);
         exit;
     }elseif($email_result == 0 && $business_result == 0 && $admin_result == 0){
     
@@ -108,7 +109,7 @@ if(!$db_connect){
         
         if(!isset($subscription_results)){
             $_SESSION['email_biz_error'] = "We are currently having issues, please try again later.";
-            header("Location: ../setup/register.php");
+            header("Location: ../setup/register.php?=plan=" .$_SESSION['plan']);
             exit();
         }else{
             $subscription_results = explode('-', $subscription_results);
@@ -118,51 +119,40 @@ if(!$db_connect){
         
         try{
             
-            try{
-                
             $sid = 'AC9aa8585446af8cafc529ba2f3bff7511';
             $twilio_token = 'c7bc34c5cc067cae53726cfc22419cdf';
             $twilio = new Client($sid, $twilio_token);
             
-            
             //Creating the client a Messaging Service
-            $service = $twilio->messaging->v1->services->create($businessName, array('statusCallback' => "https://www.blueskylinemarketing.com/process/twilio_confirmation.php"));
-                
-            //Their Messaging Service Id
-//            $MSiD = $service->sid;
+            $service = $twilio->messaging->v1->services->create($businessName, array('inboundRequestUrl' => "https://www.blueskylinemarketing.com/process/twilio_confirmation.php", 'fallbackUrl' => "https://www.blueskylinemarketing.com/process/twilio_confirmation.php"));
             
-//            //Getting their area code.
-//            $phonenumber_array = str_split($phone_number, 3);
-//            $local_area = $phonenumber_array[0];
-//            $areacode = $twilio->availablePhoneNumbers('US')->local->read(
-//                array("areaCode" => "$local_area")
-//            );
-//            
-//            //Buying a local phone number
-//            $purchase_number = $twilio->incomingPhoneNumbers->create(
-//                array(
-//                    "phoneNumber" => $areacode[0]->phoneNumber
-//                )
-//            );
-//            
-//            //Actual Phone Number
-//            $actual_number = $purchase_number->phoneNumber;
+            //    Their Messaging Service Id
+            $MSiD = $service->sid;
             
-            $MSiD = 'testing1';
-            $actual_number = '+16617784545';
-                
+            //Getting their area code.
+            $phonenumber_array = str_split($phone_number, 3);
+            $local_area = $phonenumber_array[0];
+            $areacode = $twilio->availablePhoneNumbers('US')->local->read(
+                array("areaCode" => "$local_area")
+            );
+    
+            //Buying a local phone number
+            $purchase_number = $twilio->incomingPhoneNumbers->create(
+                array("phoneNumber" => $areacode[0]->phoneNumber)
+            );
+    
+            $PNiD = $purchase_number->sid;
+            
+            //Adding Phone Number to their Messaging Service
+            $addingNumber = $twilio->messaging->v1->services("$MSiD")->phoneNumbers->create("$PNiD");
+            
+            //Actual Phone Number
+            $actual_number = $purchase_number->phoneNumber;
+            
             $twilio_sql = "INSERT INTO twilio_service (id, business_name, email, message_service_id, initial_phone_number) ";
             $twilio_sql.= "VALUES (DEFAULT, '$businessName', '$email', '$MSiD', '$actual_number')";
-            
+    
             mysqli_query($db_connect, $twilio_sql);
-                
-            }catch(Exception $c){
-                $_SESSION['email_biz_error'] = $c->getMessage() ."-". $c->getFile() . "-" . $c->getLine() . "-". $c->getCode();
-            header("Location: ../setup/register.php");
-            exit;
-            }finally{
-                exit;
-            }
             
             // Token is created using Stripe.js or Checkout!
             // Get the payment token submitted by the form:
@@ -257,12 +247,12 @@ if(!$db_connect){
 //            $error6 = $e->getMessage();
 //            print($error6);
             $_SESSION['email_biz_error'] = 'We are currently having problems. Please try in a few minutes.';
-            header("Location: ../setup/register.php");
+            header("Location: ../setup/register.php?plan=". $_SESSION['plan']);
             exit;
         }
     }else{
         $_SESSION['email_biz_error'] = 'We encounted an error. Please try in a few minutes.';
-        header("Location: ../setup/register.php");
+        header("Location: ../setup/register.php?plan=" . $_SESSION['plan']);
         exit;
     }
 }
