@@ -26,6 +26,15 @@ if($val == 0){
 }
 $subscription_message = $row['subscription_message'];
 $loyalty_message = $row['loyalty_message'];
+$monthly_texts = $row['monthly_texts'];
+
+$twilio_sql = "SELECT * FROM twilio_service WHERE email = '$email'";
+$twilio_results = mysqli_query($db_connect, $twilio_sql);
+$twilio_row = mysqli_fetch_array($twilio_results, MYSQLI_ASSOC);
+$initial_number = $twilio_row['initial_phone_number'];
+$initial_number = preg_replace('/(\+1)?/', '', $initial_number);
+$initial_number = str_split($initial_number, 3);
+$initial_number = $initial_number[0] . '-' . $initial_number[1] . '-' . $initial_number[2] . $initial_number[3]; 
 
 $form_width = 6;
 $form_style = 'none';
@@ -107,13 +116,25 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
             }
         ?>
         <div class="col-xs-12">
-          <input type="submit" class="btn btn-primary btn-block btn-flat" value="Submit" id="btn-login">
+         <?php
+         
+            if($monthly_texts == 0 || $monthly_texts == null){
+                ?>
+                      <input type="submit" class="btn btn-primary btn-block btn-flat" value="Submit" id="btn-login" disabled>      
+                <?php
+            }else{
+                ?>
+                      <input type="submit" class="btn btn-primary btn-block btn-flat" value="Submit" id="btn-login">
+                <?php
+            }
+            
+         ?>
         </div>
       <div class="row">
         <div class="col-xs-12">
           <div class="checkbox icheck">
             <label>
-              Message and data rates may apply. To opt-out text <b>STOP</b> to 661-493-9066. For more information or terms and conditions please visit <a href="#">www.blueskylinemarketing.com/terms.php</a>
+              Message and data rates may apply. Expect Approx. <? if($monthly_text == null){echo 0;}else{ echo $monthly_text; }?> To opt-out text <b>STOP</b> to <?php echo $initial_number; ?>. For more information or terms and conditions please visit <a href="#">www.blueskylinemarketing.com/terms.php</a>
             </label>
           </div>
         </div>
