@@ -27,6 +27,17 @@ if($row['loyalty_message'] == null){
     $loyalty_message = $row['loyalty_message'];
 }
 
+$email = $row['email'];
+$monthly_texts = $row['monthly_texts'];
+
+$twilio_sql = "SELECT * FROM twilio_service WHERE email = '$email'";
+$twilio_results = mysqli_query($db_connect, $twilio_sql);
+$twilio_row = mysqli_fetch_array($twilio_results, MYSQLI_ASSOC);
+$initial_number = $twilio_row['initial_phone_number'];
+$initial_number = preg_replace('/(\+1)?/', '', $initial_number);
+$initial_number = str_split($initial_number, 3);
+$initial_number = $initial_number[0] . '-' . $initial_number[1] . '-' . $initial_number[2] . $initial_number[3]; 
+
 $form_width = 6;
 $form_style = 'none';
 
@@ -86,7 +97,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
         <div class="col-xs-12">
           <div class="checkbox icheck">
             <label>
-              Message and data rates may apply. To opt-out text <b>STOP</b> to 661-493-9066. For more information or terms and conditions please visit <a href="#">www.blueskylinemarketing.com/terms.php</a>
+              Message and data rates may apply. Expect Approx. <? if($monthly_texts == null){echo 0;}else{ echo $monthly_texts; }?> Texts/Monthly. To opt-out text <b>STOP</b> to <?php echo $initial_number; ?>. For more information or terms and conditions please visit <a href="#">www.blueskylinemarketing.com/terms.php</a>
             </label>
           </div>
         </div>
