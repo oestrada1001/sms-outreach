@@ -170,8 +170,8 @@ if(!$db_connect){
             
             $hash = md5(rand( 0, 1000));
             
-            $client_sql = "INSERT INTO clients (id, access, first_name, last_name, phone_number, email, password, business_name, delivery_date, default_message, custom_message, after_date, after_message, hash, active, visit_goal, sms_sent, collect_emails, subscription_message, loyalty_message, subscription_link) ";
-            $client_sql.= "VALUES (DEFAULT, $access, '$first_name', '$last_name', '$phone_number', '$email', '$password', '$businessName', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '$hash', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)";
+            $client_sql = "INSERT INTO clients (id, access, first_name, last_name, phone_number, email, password, business_name, delivery_date, default_message, custom_message, after_date, after_message, hash, active, visit_goal, sms_sent, collect_emails, subscription_message, loyalty_message, subscription_link, monthly_texts) ";
+            $client_sql.= "VALUES (DEFAULT, $access, '$first_name', '$last_name', '$phone_number', '$email', '$password', '$businessName', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '$hash', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)";
         
             mysqli_query($db_connect, $client_sql);
             
@@ -183,7 +183,8 @@ if(!$db_connect){
             $business_sql.= "email VARCHAR(50) NULL, ";
             $business_sql.= "visit TINYINT(5) NOT NULL DEFAULT '1', ";
             $business_sql.= "last_check_in DATE NOT NULL, ";
-            $business_sql.= "registration_date DATE NOT NULL)";
+            $business_sql.= "registration_date DATE NOT NULL ";
+            $business_sql.= "confirmed VARCHAR(3) NOT NULL DEFAULT 'no')";
             
             mysqli_query($db_connect, $business_sql);
             

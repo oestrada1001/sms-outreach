@@ -146,8 +146,8 @@ if(!$db_connect){ //database cannot connection
                 }else{ //if number or email does not exist
         
                     //Record SQL
-                    $sql = "INSERT INTO $business_name (id, name, phone_number, email, visit, last_check_in, registration_date) ";
-                    $sql.= "VALUES (DEFAULT, '$sub_name', '$sub_cell', '$sub_email', 1, NOW(), NOW())";
+                    $sql = "INSERT INTO $business_name (id, name, phone_number, email, visit, last_check_in, registration_date, confirmed) ";
+                    $sql.= "VALUES (DEFAULT, '$sub_name', '$sub_cell', '$sub_email', 1, NOW(), NOW(), 'yes')";
                     
                     //insert record
                     if(mysqli_query($db_connect, $sql)){
@@ -210,8 +210,8 @@ if(!$db_connect){ //database cannot connection
                 
             }else{
                 
-                $sql = "INSERT INTO $business_name (id, name, phone_number, email, visit, last_check_in, registration_date) ";
-                $sql.= "VALUES (DEFAULT, '$sub_name', '$sub_cell', '$sub_email', 1, NOW(), NOW())";
+                $sql = "INSERT INTO $business_name (id, name, phone_number, email, visit, last_check_in, registration_date, confirmed) ";
+                $sql.= "VALUES (DEFAULT, '$sub_name', '$sub_cell', '$sub_email', 1, NOW(), NOW(), 'yes')";
                 
                 //insert record
                 if(mysqli_query($db_connect, $sql)){
