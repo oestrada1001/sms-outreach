@@ -215,6 +215,8 @@ try {
             
             $customer_id = $complete_event->data->object->customer;
             $subscriber_id = $complete_event->data->object->id;
+            $subscription_type = $complete_event->data->object->items->data[0]->plan->id;
+            
             
             $check_info_sql = "SELECT * FROM stripe_clients WHERE customer_id = '$customer_id'";
             $check_info_results = mysqli_query($db_connect, $check_info_sql);
