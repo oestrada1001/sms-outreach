@@ -112,7 +112,7 @@ desired effect
               <a href="logout.php">Sign Out<i class="fa fa-sign-out"></i></a>
           </li>
           <li>
-            <a href="client/welcome.php" target="_blank" onclick="self.close();">Subscription Form<i class="fa fa-file-text"></i></a>
+            <a href="client/welcome.php">Subscription Form<i class="fa fa-file-text"></i></a>
           </li>
         </ul>
       </div>
@@ -432,6 +432,68 @@ desired effect
             
         }
         
+        //Set Texts/Monthly
+        function setTextsMonthly(number){
+            var numberOfText = number;
+            
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    
+                    var response = parseInt(xmlhttp.responseText);
+                    
+                    switch(response){
+                        case 404:
+                            $('.monthly_texts #error').html("<i class='fa fa-times-circle'></i>We are currently have problems. Please try again in a few minutes or contact us.");
+                            $('#set_monthly_texts').prop('disabled', false);
+                            break;
+                        case 606:
+                            $('.monthly_texts #error').html("<i class='fa fa-times-circle'></i>Please enter a number.");
+                            $('#set_monthly_texts').prop('disabled', false);
+                            break;
+                        case 101:
+                            $('.monthly_texts #success').html("<i class='fa fa-check-circle'></i>Number of Text Messages/Monthly has been set. This page will now reload in a few seconds.");
+                            
+                            setTimeout(function(){
+                                window.location.href = "dashboard.php";
+                            }, 3000);
+                            
+                            break;        
+                    }
+                    
+                }
+            }
+            
+            xmlhttp.open("POST", "process/set_texts_monthly_process.php?numberOfTexts="+numberOfText, true);
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send("numberOfText="+numberOfText);
+        }
+        
+        $('#set_monthly_texts').on('click', function(e){
+            e.preventDefault();
+            $('.monthly_texts #error').empty();
+            $('.monthly_texts #success').empty();
+            
+            var submit_button = $("#set_monthly_texts").prop('disabled', true);
+            var set_Monthly = $("#set_monthly").val();
+            set_Monthly = parseInt(set_Monthly);
+            
+            if(!Number.isInteger(set_Monthly)){
+                $('.monthly_texts #error').html("<i class='fa fa-times-circle'></i>Incorrect Format.");
+                submit_button.prop("disabled", false);
+                return
+            }
+            
+            if(set_Monthly <= 0){
+                $('.monthly_texts #error').html("<i class='fa fa-times-circle'></i>The number has to be greater than 0.");
+                submit_button.prop("disabled", false);
+                return
+            }
+            
+            setTextsMonthly(set_Monthly);
+            
+        });
+        
         //Client Dashboard
         document.getElementById('dashboard').addEventListener('click', function(){
                 var url = event.currentTarget.id;
@@ -446,6 +508,32 @@ desired effect
                     var expires = "expires="+ d.toUTCString();
                     document.cookie = "dashboard_tour=true;" + expires + ";path=/";
                 }
+            
+                $('body').on('click', '#set_monthly_texts', function(e){
+                    e.preventDefault();
+                    
+                    $('.monthly_texts #error').empty();
+                    $('.monthly_texts #success').empty();
+                    
+                    var submit_button = $("#set_monthly_texts").prop('disabled', true);
+                    var set_Monthly = $("#set_monthly").val();
+                    set_Monthly = parseInt(set_Monthly);
+                    
+                    if(!Number.isInteger(set_Monthly)){
+                        $('.monthly_texts #error').html("<i class='fa fa-times-circle'></i>Incorrect Format.");
+                        submit_button.prop("disabled", false);
+                        return
+                    }
+                    
+                    if(set_Monthly <= 0){
+                        $('.monthly_texts #error').html("<i class='fa fa-times-circle'></i>The number has to be greater than zero.");
+                        submit_button.prop("disabled", false);
+                        return
+                    }
+                    
+                    setTextsMonthly(set_Monthly);
+                    
+                });
             
             });
         

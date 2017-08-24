@@ -134,7 +134,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
         <div class="col-xs-12">
           <div class="checkbox icheck">
             <label>
-              Message and data rates may apply. Expect Approx. <? if($monthly_text == null){echo 0;}else{ echo $monthly_text; }?> To opt-out text <b>STOP</b> to <?php echo $initial_number; ?>. For more information or terms and conditions please visit <a href="#">www.blueskylinemarketing.com/terms.php</a>
+              Message and data rates may apply. Expect Approx. <? if($monthly_texts == null){echo 0;}else{ echo $monthly_texts; }?> Texts/Monthly. To opt-out text <b>STOP</b> to <?php echo $initial_number; ?>. For more information or terms and conditions please visit <a href="#">www.blueskylinemarketing.com/terms.php</a>
             </label>
           </div>
         </div>
