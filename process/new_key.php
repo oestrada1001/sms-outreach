@@ -16,7 +16,7 @@ if(!preg_match($valid_sms_message, $hash)){
 }
 
 if(!$db_connect){
-    echo "4041";
+    echo "404";
 }else{
 
     $sql = "SELECT * FROM clients WHERE email = '$email' AND hash = '$hash' LIMIT 1";
@@ -38,7 +38,7 @@ if(!$db_connect){
         }
         
     }else{
-        echo "4042";
+        echo "404";
     }
 
 }

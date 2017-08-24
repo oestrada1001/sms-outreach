@@ -772,11 +772,7 @@ desired effect
                 xmlhttp.onreadystatechange = function(){
                     if(this.readyState == 4 && this.status == 200){
                         
-                        alert(xmlhttp.responseText);
-                        
                         var response = Number(xmlhttp.responseText);
-                        
-                        alert(response);
                         
                         if(response == 606){
                             $('.subscription_link #error').html("<i class='fa fa-times-circle'></i>Link already taken. Please try again.");
