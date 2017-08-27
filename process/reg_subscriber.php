@@ -183,10 +183,11 @@ if(!$db_connect){
             $business_sql.= "email VARCHAR(50) NULL, ";
             $business_sql.= "visit TINYINT(5) NOT NULL DEFAULT '1', ";
             $business_sql.= "last_check_in DATE NOT NULL, ";
-            $business_sql.= "registration_date DATE NOT NULL ";
+            $business_sql.= "registration_date DATE NOT NULL, ";
             $business_sql.= "confirmed VARCHAR(3) NOT NULL DEFAULT 'no')";
             
             mysqli_query($db_connect, $business_sql);
+            
             
             $business_history_table = $business_name ."_message_history";
             

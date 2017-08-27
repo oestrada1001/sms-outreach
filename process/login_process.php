@@ -90,7 +90,7 @@ if(!$db_connect){
         }
         
     }else{
-        echo '404';
+        echo 404;
     }
 
         

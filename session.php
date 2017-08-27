@@ -1,7 +1,5 @@
 <?php
 require_once "db_links.php";
-session_set_cookie_params(21600);
-ini_set('session.gc_maxlifetime', 21600);
 session_start();
 
 date_default_timezone_set('America/Los_Angeles');

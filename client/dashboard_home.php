@@ -162,17 +162,18 @@ $lastSubscriptions = ["Yesterday's subscriptions" => $yesterdaySubscriptions, "L
     
     if($monthly_texts == 0 || $monthly_texts == null){
         ?>
+        
         <div class="col-md-12 monthly_texts">
             <div class="box box-danger">
                 <div class="box-header text-center">
-                    <h3 class="box-title">Approximately # of Text Messages/Monthly</h3>
+                    <h3 class="box-title">Approximately # of text messages a subscriber will receive a month. <span class="help-tip"><p><img src="img/text-to-expect.jpg"></p></span></h3>
                     <div id="success"></div>
                     <div id="error"></div>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-8">
-                           <p><b>Important:</b> In order to provide the best possible service to our clients and your customers. We are required by law to state the number of text messages you are planning to send out monthly. This does not mean you cannot go over but we recommend for you to stay as close as possible to the number you are going to set. We are not responsible for keeping track of the number of text messages you send and by setting a number you are acknowledging that you are responsible for any misuse of this service. To change the number of text messages you plan on sending monthly please contact us at <i><a href="tel:+16617784504">661-368-5285</a></i> or email us at <i><a href="mailto:contact@blueskylinemarketing.com">contact@blueskylinemarketing.com</a></i><br><br><b>It is important to note that if you do not set a number you will not be able to collect subscribers.</b></p>
+                           <p><b>Important:</b> In order to provide the best possible service to our clients and your customers. We are required by law to state the number of text messages your customer should expect on a monthly basis. This does not mean you cannot go over but we recommend for you to stay as close as possible to the number you are going to set. We are not responsible for keeping track of the number of text messages you send and by setting a number you are acknowledging that you are responsible for any misuse of this service. To change the number of text messages you plan on sending a month please contact us at <i><a href="tel:+16617784504">661-368-5285</a></i> or email us at <i><a href="mailto:contact@blueskylinemarketing.com">contact@blueskylinemarketing.com</a></i><br><br><b>It is important to note that if you do not set a number you will not be able to collect subscribers.</b></p>
                             
                         </div>
                         <div class="col-md-4">
@@ -180,7 +181,7 @@ $lastSubscriptions = ["Yesterday's subscriptions" => $yesterdaySubscriptions, "L
                               <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                   <span class="input-group-addon">APPROX.</span>
                                   <input class="form-control text-right" type="number" name="set_monthly" id="set_monthly" placeholder="ex. 7" min="1" required>
-                                  <span class="input-group-addon"> Texts / Monthly</span>
+                                  <span class="input-group-addon"> Texts / Month Per Customer</span>
                                </div>
                                   
                                  <input id="set_monthly_texts" type="submit" class="btn btn-primary form-control" value="SET">
