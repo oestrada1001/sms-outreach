@@ -222,7 +222,7 @@ try {
             $check_info_results = mysqli_query($db_connect, $check_info_sql);
             $check_info_results = mysqli_num_rows($check_info_results);
             
-            if($check_info_results == 1){
+            if($check_info_results >= 1){
                 
                 //Subscription Base
                 $complete_subscription = \Stripe\Subscription::retrieve($complete_event->data->object->id);
