@@ -18,7 +18,7 @@ if($client_verification == 'denied'){
 $businessName = $row['business_name'];
 $business_name = str_replace(' ', '_', strtolower($businessName));
 
-$sql = "SELECT * FROM $business_name";
+$sql = "SELECT * FROM $business_name WHERE confirmed = 'yes'";
 $result = mysqli_query($db_connect, $sql);
 
 
