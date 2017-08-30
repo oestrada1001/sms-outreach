@@ -1,5 +1,6 @@
 <?php
-require_once('../session.php');
+require_once('../db_links.php');
+require_once('../functions.php');
 require_once('../validation/back_end_validation.php');
 require_once('../twilio-php-master/Twilio/autoload.php');
 require_once('../cronjobs/Twilio/twilio_keys.php');
@@ -7,6 +8,54 @@ require_once('../cronjobs/Twilio/twilio_keys.php');
 use Twilio\Rest\Client;
 
 $client = new Client($sid, $token);
+
+$fingerprint = $_POST['fingerprint'];
+$reAuthX = $_COOKIE['rainbow-bunny-cookie'];
+
+$reAuthX_search = "SELECT * FROM credentials WHERE token = '$reAuthX' AND fingerprint = '$fingerprint' AND date_deleted >= NOW()";
+$reAuthX_results = mysqli_query($db_connect, $reAuthX_search);
+$reAuthX_rows = mysqli_num_rows($reAuthX_results);
+$credentials = mysqli_fetch_array($reAuthX_results, MYSQLI_ASSOC);
+$business_email = $credentials['email'];
+
+if($reAuthX_rows == 1){
+    //use email to get client values - basically same process as session.php
+    $client_account_sql = "SELECT * FROM clients WHERE email = '$business_email'";
+    $client_account_results = mysqli_query($db_connect, $client_account_sql);
+    $row = mysqli_fetch_array($client_account_results, MYSQLI_ASSOC);
+    
+    //expire all previous tokens
+    $expire_currentToken_sql = "UPDATE credentials SET date_deleted = NOW() WHERE fingerprint = '$fingerprint'";
+    mysqli_query($db_connect, $expire_currentToken_sql);
+    
+    //generate new token
+    $newToken = getToken(100);
+    $insert_newToken_sql = "INSERT INTO credentials(id, email, fingerprint, date_created, token, date_deleted) ";
+    $insert_newToken_sql.= "VALUES(DEFAULT, '$business_email', '$fingerprint', NOW(), '$newToken', NOW()+INTERVAL 3 DAY)";
+    if(!mysqli_query($db_connect, $insert_newToken_sql)){
+        echo mysqli_error($db_connect);
+    }
+    
+    //update cookie
+    $cookie_name = 'rainbow-bunny-cookie';
+    $cookie_value = $newToken;
+    setcookie($cookie_name, $cookie_value, time() + 86400*3, '/');
+    
+}else{
+    //expire all tokens and log out
+    $expire_tokens = "UPDATE credentials SET date_deleted = NOW() WHERE fingerprint = '$fingerprint'";
+    $expire_tokens_results = mysqli_query($db_connect, $expire_tokens);
+    
+    //expire cookie
+    $cookie_name = 'rainbow-bunny-cookie';
+    unset($_COOKIE[$cookie_name]);
+    setcookie($cookie_name, '', time() - 3600);
+    
+    echo '411';
+    exit;
+    
+}
+
 
 
 if($row['default_message'] == null){
@@ -18,6 +67,7 @@ $business_name = str_replace(' ', '_', strtolower($row['business_name']));
 $sub_name = strip_tags(trim($_POST['sub_name']));
 $sub_cell = strip_tags(trim($_POST['sub_cell']));
 $sub_email = strip_tags(trim($_POST['sub_email']));
+
 
 if(!preg_match($valid_name, $sub_name)){
     echo 'Invalid Name Format';

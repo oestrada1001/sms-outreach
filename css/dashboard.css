@@ -129,6 +129,8 @@ hr{
 }
 #subModal .modal-content{
     width: 100%;
+    padding: 15px;
+    overflow: scroll;
 }
 #subResponse{
     font-size: 22px;

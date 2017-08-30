@@ -1,5 +1,6 @@
 <?php
 require_once 'session.php';
+require_once 'functions.php';
 
 if(!isset($row['email'])){
     header("location: logout.php");
@@ -15,6 +16,8 @@ if($client_verification == 'denied'){
     header("location: logout.php");
 }
 //$directions = include 'logout.php';
+
+$reAuthX = getToken(100);
 
 
 ?>
@@ -46,19 +49,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="dist/css/skins/skin-red.css">
-
+    
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+  
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
   
   <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+  <script src='dist/client.min.js'></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -112,7 +116,10 @@ desired effect
               <a href="logout.php">Sign Out<i class="fa fa-sign-out"></i></a>
           </li>
           <li>
-            <a href="client/welcome.php">Subscription Form<i class="fa fa-file-text"></i></a>
+            <a id="subscription-form" style="cursor: pointer;">Subscription Form<i class="fa fa-file-text"></i></a>
+            <form method="post" id="browser-form" action="client/welcome.php">
+                <input type="hidden" name="fingerprint" id="hidden-value">
+            </form>
           </li>
         </ul>
       </div>
@@ -245,6 +252,40 @@ desired effect
 <script type="text/javascript">
     
     $(document).ready(function() {
+        
+        var clientBrowser = new ClientJS();
+        var fingerprint = clientBrowser.getFingerprint();
+        var reAuthX = <?php echo json_encode($reAuthX); ?>;
+        
+        //AuthX Process
+        $("#subscription-form").on('click', function(e){
+            e.preventDefault();
+            
+            var stringPrint = fingerprint + "";
+            
+            var hiddenValue = document.getElementById('hidden-value').value = stringPrint ;
+            
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    
+                    var responseText = parseInt(xmlhttp.responseText);
+                    
+                    if(xmlhttp.responseText == 1001){
+                        
+                        $("#browser-form").submit();
+                    }else{
+                        window.location.href = 'dashboard.php';
+                    }
+                    
+                }
+            }
+            
+            xmlhttp.open("POST", "process/reAuthX-process.php", true);
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send("fingerprint="+fingerprint+"&reAuthX="+reAuthX);
+            
+        });
         
         
         //end Tours if any link is clicked

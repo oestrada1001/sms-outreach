@@ -1,8 +1,33 @@
 <?php
-require_once '../session.php';
+require_once '../db_links.php';
 
-if(!isset($_SESSION['email'])){
+$fingerprint = $_POST['fingerprint'];
+$reAuthX = $_COOKIE['rainbow-bunny-cookie'];
+
+$check_credentials_sql = "SELECT * FROM credentials WHERE fingerprint = '$fingerprint' AND token = '$reAuthX' AND date_deleted > NOW()";
+$check_credentials_results = mysqli_query($db_connect, $check_credentials_sql);
+$credentials = mysqli_fetch_array($check_credentials_results, MYSQLI_ASSOC);
+$business_email = $credentials['email'];
+
+if($check_credentials_results){
+    //Return Clients Account Information
+    $client_account_sql = "SELECT * FROM clients WHERE email = '$business_email'";
+    $client_account_results = mysqli_query($db_connect, $client_account_sql);
+    $row = mysqli_fetch_array($client_account_results, MYSQLI_ASSOC);
+    
+}else{
+    //Expire Current Token
+    $expire_tokens_sql = "UPDATE credentials SET date_deleted = NOW() WHERE fingerprint = '$fingerprint'";
+    $expire_tokens = mysqli_query($db_connect, $expire_tokens_sql);
+    
+    //Logout
+    header('Location: ../logout.php');
+    exit;
+}
+
+if(!isset($row['email'])){
     header("location: ../logout.php");
+    exit;
 }
 if($row['access'] == 0){
     header("location: ../setup/unpaid_account.php");
@@ -76,6 +101,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel='stylesheet' href="../css/dashboard.css" type="text/css">
+  <script src="../dist/client.min.js"></script>
 </head>
 <body class="hold-transition register-page">
     <div class="row">
@@ -245,7 +271,25 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
+      
+      
+	var client = new ClientJS(); // Create A New Client Object
+    var fingerprint = client.getFingerprint(); // Calculate Device/Browser Fingerprint
     
+    function getCookie(cn) {
+        var name = cn+"=";
+        var allCookie = decodeURIComponent(document.cookie).split(';');
+        var cval = [];
+        for(var i=0; i < allCookie.length; i++) {
+            if (allCookie[i].trim().indexOf(name) == 0) {
+                cval = allCookie[i].trim().split("=");
+            }   
+        }
+        return (cval.length > 0) ? cval[1] : "";
+    }
+      
+    var reAuthX = getCookie('rainbow-bunny-cookie');
+
     $("#btn-login").on('click', function(e){
         e.preventDefault();
         $('#btn-login').prop("disabled", true);
@@ -256,6 +300,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
         var sub_email = $('#sub_email').val();
         
         if(!valid_name.test(sub_name)){
+            
             $("#error").append("<i class='fa fa-times-circle col-md-2'></i>Name cannot contain special characters and must have a minimum of 3 characters and maximum of 20 characters.");
             
             $('#btn-login').prop("disabled", false);
@@ -284,22 +329,38 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
         xmlhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 
-                    $('#sub_name').prop('value', '');
-                    $('#sub_cell').prop('value', '');
-                    if(sub_email !== 'no'){
-                        $('#sub_email').prop('value', '');
-                    }
+                $('#sub_name').prop('value', '');
+                $('#sub_cell').prop('value', '');
+                if(sub_email !== 'no'){
+                    $('#sub_email').prop('value', '');
+                }
                 
+                var responseNumber = parseInt(xmlhttp.responseText);
+                
+                if(responseNumber == 411){
+                    
+                    $('#subResponse').append("Sorry for the inconvenience, please have one of our team members log back in.");
+                    $("#subModal").modal();
+                     
+                    setTimeout(function(){
+                        window.location.href= '../logout.php';
+                    }, 5000);
+                    return;
+                }else{
+                    
                     $('#subResponse').append(xmlhttp.responseText);
                     $("#subModal").modal();
                     
                     $('#btn-login').prop("disabled", false);
+                }
+                
+                
             }
-            
+             
         }
         
-        xmlhttp.open("POST", "../process/subscribe_process.php?sub_name="+sub_name+"&sub_cell="+sub_cell+"&sub_email="+sub_email, true);
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); xmlhttp.send("sub_name="+sub_name+"&sub_cell="+sub_cell+"&sub_email="+sub_email);
+        xmlhttp.open("POST", "../process/subscribe_process.php", true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); xmlhttp.send("sub_name="+sub_name+"&sub_cell="+sub_cell+"&sub_email="+sub_email+"&fingerprint="+fingerprint+"&reAuthX="+reAuthX);
         
     });
       
@@ -334,27 +395,6 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
         
     }); 
     
-      function refresh_sesh(){
-          
-        setTimeout(function(){
-            
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 200){
-                    console.log('sesh');
-                    refresh_sesh();
-                }
-            }
-            
-            xmlhttp.open("POST", "../process/refresh_session.php", true);
-            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xmlhttp.send();
-          
-        }, 1200000);  
-      }
-      
-      refresh_sesh();
-      
   });
 </script>
 </body>
