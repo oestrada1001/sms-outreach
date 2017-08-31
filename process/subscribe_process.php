@@ -24,6 +24,12 @@ if($reAuthX_rows == 1){
     $client_account_results = mysqli_query($db_connect, $client_account_sql);
     $row = mysqli_fetch_array($client_account_results, MYSQLI_ASSOC);
     
+    //Retrieve their Twilio Service Info
+    $clients_twilio_sql = "SELECT * FROM twilio_service WHERE email = '$business_email'";
+    $clients_twilio_results = mysqli_query($db_connect, $clients_twilio_sql);
+    $twilio_row = mysqli_fetch_array($clients_twilio_results, MYSQLI_ASSOC);
+    $client_MSiD = $twilio_row['message_service_id'];
+
     //expire all previous tokens
     $expire_currentToken_sql = "UPDATE credentials SET date_deleted = NOW() WHERE fingerprint = '$fingerprint'";
     mysqli_query($db_connect, $expire_currentToken_sql);
@@ -179,7 +185,7 @@ if(!$db_connect){ //database cannot connection
                             $client->messages->create(
                                 $sub_cell,
                                 array(
-                                    'messagingServiceSid' => "MG8d8c7a3e572bd31e29103c7d3476da20",
+                                    'messagingServiceSid' => $client_MSiD,
                                     'body' => $visit_message,
                                 )
                             );
@@ -213,7 +219,7 @@ if(!$db_connect){ //database cannot connection
                         $client->messages->create(
                             $sub_cell,
                             array(
-                                'messagingServiceSid' => "MG8d8c7a3e572bd31e29103c7d3476da20",
+                                'messagingServiceSid' => $client_MSiD,
                                 'body' => $default_message,
                             )
                         );
@@ -274,7 +280,7 @@ if(!$db_connect){ //database cannot connection
                     $client->messages->create(
                         $sub_cell,
                         array(
-                            'messagingServiceSid' => "MG8d8c7a3e572bd31e29103c7d3476da20",
+                            'messagingServiceSid' => $client_MSiD,
                             'body' => $default_message,
                         )
                     );
