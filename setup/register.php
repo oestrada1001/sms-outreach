@@ -129,6 +129,7 @@ $_SESSION['subscription_type'] = $_GET['plan'];
               interval: 4000
           });
                         
+//          var stripe = Stripe('pk_test_34RoVWFJwUqy5QWraJicQmBv');
           var stripe = Stripe('pk_live_dCTBrBZRkyx9187EDyUTVfye');
           var elements = stripe.elements();
           
@@ -205,13 +206,14 @@ $_SESSION['subscription_type'] = $_GET['plan'];
           });
           
           card.addEventListener('change', function(event){
-              
               var displayError = document.getElementById('card-errors');
               
               if(event.error){
                   displayError.textContent = event.error.message;
               }else{
                   displayError.textContent = '';
+                  var submit_button = $('#submit_payment');
+                  submit_button.prop('disabled', false);
               }
               
           });
