@@ -7,7 +7,7 @@ session_start();
 
 use Twilio\Rest\Client;
 
-$client = new Client($sid, $token);
+$client = new Client($sid, $twilio_token);
 
 $subscription_link = $_SESSION['subscription_link'];
 $sql = "SELECT * FROM clients WHERE subscription_link = '$subscription_link'";

@@ -12,8 +12,7 @@ $scheduled_sms = "SELECT * FROM clients WHERE delivery_date = '$today' AND sms_s
 
 if($results = mysqli_query($db_connect, $scheduled_sms)){
     
-    $client = new Client($sid, $token);
-    
+    $client = new Client($sid, $twilio_token);
     
     //business with outdates
     while($sender = $results->fetch_array()){

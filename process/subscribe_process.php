@@ -7,7 +7,7 @@ require_once('../cronjobs/Twilio/twilio_keys.php');
 
 use Twilio\Rest\Client;
 
-$client = new Client($sid, $token);
+$client = new Client($sid, $twilio_token);
 
 $fingerprint = $_POST['fingerprint'];
 $reAuthX = $_COOKIE['rainbow-bunny-cookie'];
@@ -125,7 +125,8 @@ if(!$db_connect){ //database cannot connection
                         
                     //Test&Test1 are associative arrays, num_rows gets value 0 or 1. 0 = false, 1 = true
                     $test = mysqli_num_rows($customer);
-                }elseif($row['collect_emails'] == 'no'){
+
+                }else{
                     
                     $sql = "SELECT * FROM $business_name WHERE phone_number = '$sub_cell' LIMIT 1";
                     

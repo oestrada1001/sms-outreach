@@ -76,9 +76,7 @@ if($client_message == 'stop'){
         
         foreach($all_MSiDs as $message_id){
         
-            $accound_sid = 'AC9aa8585446af8cafc529ba2f3bff7511';
-            $auth_token = 'c7bc34c5cc067cae53726cfc22419cdf';
-            $twilio = new Client($account_sid, $auth_token);
+            $twilio = new Client($sid, $twilio_token);
         
             
             $MSiD_phoneNumbers = $twilio->messaging->v1->services("$message_id")->phoneNumbers->read();
@@ -206,9 +204,7 @@ if($client_message == 'no'){
         
         foreach($all_MSiDs as $message_id){
         
-            $accound_sid = 'AC9aa8585446af8cafc529ba2f3bff7511';
-            $auth_token = 'c7bc34c5cc067cae53726cfc22419cdf';
-            $twilio = new Client($account_sid, $auth_token);
+            $twilio = new Client($sid, $twilio_token);
         
             
             $MSiD_phoneNumbers = $twilio->messaging->v1->services("$message_id")->phoneNumbers->read();
@@ -344,10 +340,7 @@ if($finding_match == 1){
     
     foreach($all_MSiDs as $message_id){
         
-        $accound_sid = 'AC9aa8585446af8cafc529ba2f3bff7511';
-        $auth_token = 'c7bc34c5cc067cae53726cfc22419cdf';
-        $twilio = new Client($account_sid, $auth_token);
-    
+        $twilio = new Client($sid, $twilio_token);
         
         $MSiD_phoneNumbers = $twilio->messaging->v1->services("$message_id")->phoneNumbers->read();
         

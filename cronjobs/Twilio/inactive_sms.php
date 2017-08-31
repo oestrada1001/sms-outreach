@@ -6,12 +6,11 @@ require_once('public_html/twilio-php-master/Twilio/autoload.php');
 
 use Twilio\Rest\Client;
 
-
 $scheduled_sms = "SELECT * FROM clients";
 
 if($results = mysqli_query($db_connect, $scheduled_sms)){
     
-    $client = new Client($sid, $token);
+    $client = new Client($sid, $twilio_token);
     
     while($sender = $results->fetch_array()){
 
