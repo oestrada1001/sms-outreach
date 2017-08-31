@@ -47,11 +47,19 @@ try {
 //        $complete_customer = \Stripe\Customer::retrieve($complete_event->data->object->id);
 //        $customer_id = $complete_customer->id;
 //        $customer_email = $complete_customer->email;
-//        
-        $insert_customer_info = "INSERT INTO stripe_clients ( id, email, customer_id, subscriber_id, subscription_type) ";
-        $insert_customer_info.= "VALUES ( DEFAULT, '$customer_email', '$customer_id', NULL, NULL)";
+        $search_client_sql = "SELECT * FROM stripe_clients WHERE customer_id = '$customer_id'";
+        $search_client_results = mysqli_query($db_connect, $search_client_sql);
+        $search_client_rows = mysqli_num_rows($search_client_results);
         
-        mysqli_query($db_connect, $insert_customer_info);
+        if($search_client_rows == 0){
+            $insert_customer_info = "INSERT INTO stripe_clients ( id, email, customer_id, subscriber_id, subscription_type) ";
+            $insert_customer_info.= "VALUES ( DEFAULT, '$customer_email', '$customer_id', NULL, NULL)";
+
+            mysqli_query($db_connect, $insert_customer_info);
+
+            http_response_code(200);
+            exit();
+        }
         
         http_response_code(200);
         exit();
