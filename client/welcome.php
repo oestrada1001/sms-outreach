@@ -137,7 +137,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
               </div> 
             <?php
-            }elseif($row['collect_emails'] == 'no'){
+            }else{
                 ?><input type="email" id="sub_email" value="no" style="display: none;"><?php
             }
         ?>
