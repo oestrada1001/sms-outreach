@@ -22,7 +22,7 @@ require_once 'header.php';
                   <div class="row">
                       <div>
                          <?php if($row['active'] == 0){ ?>
-                              <h1 class="lj-text-center">Congradulations, your email has been verified!</h1>
+                              <h1 class="lj-text-center">Congratulations, your email has been verified!</h1>
                           <?php }elseif($row['active'] == 1){ ?>
                               <h1 class="lj-text-center">Setup your new password</h1>
                           <?php } ?>
