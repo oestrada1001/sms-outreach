@@ -273,8 +273,10 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
     });
       
       
-	var client = new ClientJS(); // Create A New Client Object
-    var fingerprint = client.getFingerprint(); // Calculate Device/Browser Fingerprint
+    // Create A New Client Object
+	var client = new ClientJS();
+    // Calculate Device/Browser Fingerprint
+    var fingerprint = client.getFingerprint();
     
     function getCookie(cn) {
         var name = cn+"=";
@@ -327,7 +329,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
             
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                 
                 $('#sub_name').prop('value', '');
                 $('#sub_cell').prop('value', '');
@@ -360,7 +362,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
         }
         
         xmlhttp.open("POST", "../process/subscribe_process.php", true);
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); xmlhttp.send("sub_name="+sub_name+"&sub_cell="+sub_cell+"&sub_email="+sub_email+"&fingerprint="+fingerprint+"&reAuthX="+reAuthX);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); xmlhttp.send("sub_name="+sub_name+"&sub_cell="+sub_cell+"&sub_email="+sub_email+"&fingerprint="+fingerprint);
         
     });
       
