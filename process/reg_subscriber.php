@@ -1,9 +1,11 @@
 <?php
 require_once('../stripe4-x/stripe-php-4.13.0/init.php');
 require_once('../twilio-php-master/Twilio/autoload.php');
+require_once('../cronjobs/Twilio/twilio_keys.php');
 require_once('../session.php');
 require_once('../functions.php');
 require_once('../validation/back_end_validation.php');
+//\Stripe\Stripe::setApiKey("sk_test_uYkMFP68T1v4WkducM4LWDO0");
 \Stripe\Stripe::setApiKey("sk_live_1teGqmhHeAwmjkmdkINqxbqp");
 
 use Twilio\Rest\Client;
@@ -118,42 +120,7 @@ if(!$db_connect){
         }
         
         try{
-            
-            $sid = 'AC9aa8585446af8cafc529ba2f3bff7511';
-            $twilio_token = 'c7bc34c5cc067cae53726cfc22419cdf';
-            $twilio = new Client($sid, $twilio_token);
-            
-            //Creating the client a Messaging Service
-            $service = $twilio->messaging->v1->services->create($businessName, array('inboundRequestUrl' => "https://www.blueskylinemarketing.com/process/twilio_confirmation.php", 'fallbackUrl' => "https://www.blueskylinemarketing.com/process/twilio_confirmation.php"));
-            
-            //    Their Messaging Service Id
-            $MSiD = $service->sid;
-            
-            //Getting their area code.
-            $phonenumber_array = str_split($phone_number, 3);
-            $local_area = $phonenumber_array[0];
-            $areacode = $twilio->availablePhoneNumbers('US')->local->read(
-                array("areaCode" => "$local_area")
-            );
-    
-            //Buying a local phone number
-            $purchase_number = $twilio->incomingPhoneNumbers->create(
-                array("phoneNumber" => $areacode[0]->phoneNumber)
-            );
-    
-            $PNiD = $purchase_number->sid;
-            
-            //Adding Phone Number to their Messaging Service
-            $addingNumber = $twilio->messaging->v1->services("$MSiD")->phoneNumbers->create("$PNiD");
-            
-            //Actual Phone Number
-            $actual_number = $purchase_number->phoneNumber;
-            
-            $twilio_sql = "INSERT INTO twilio_service (id, business_name, email, message_service_id, initial_phone_number) ";
-            $twilio_sql.= "VALUES (DEFAULT, '$businessName', '$email', '$MSiD', '$actual_number')";
-    
-            mysqli_query($db_connect, $twilio_sql);
-            
+
             // Token is created using Stripe.js or Checkout!
             // Get the payment token submitted by the form:
             $token = $_POST['stripeToken'];
@@ -199,6 +166,39 @@ if(!$db_connect){
             
             mysqli_query($db_connect, $business_history);
             
+            $twilio = new Client($sid, $twilio_token);
+
+            //Creating the client a Messaging Service
+            $service = $twilio->messaging->v1->services->create($businessName, array('inboundRequestUrl' => "https://www.blueskylinemarketing.com/process/twilio_confirmation.php", 'fallbackUrl' => "https://www.blueskylinemarketing.com/process/twilio_confirmation.php"));
+
+            //    Their Messaging Service Id
+            $MSiD = $service->sid;
+
+            //Getting their area code.
+            $phonenumber_array = str_split($phone_number, 3);
+            $local_area = $phonenumber_array[0];
+            $areacode = $twilio->availablePhoneNumbers('US')->local->read(
+                array("areaCode" => "$local_area")
+            );
+
+            //Buying a local phone number
+            $purchase_number = $twilio->incomingPhoneNumbers->create(
+                array("phoneNumber" => $areacode[0]->phoneNumber)
+            );
+
+            $PNiD = $purchase_number->sid;
+
+            //Adding Phone Number to their Messaging Service
+            $addingNumber = $twilio->messaging->v1->services("$MSiD")->phoneNumbers->create("$PNiD");
+
+            //Actual Phone Number
+            $actual_number = $purchase_number->phoneNumber
+
+            $twilio_sql = "INSERT INTO twilio_service (id, business_name, email, message_service_id, initial_phone_number) ";
+            $twilio_sql.= "VALUES (DEFAULT, '$businessName', '$email', '$MSiD', '$actual_number')";
+
+            mysqli_query($db_connect, $twilio_sql);
+
             $to = $email;
             $subject = 'BSM | Verify your email';
             $message = 'Thanks for signing up! Click the link to activate your email and set your password.'. "<br>". 'Click the link below to activate your account or copy and paste it to the address bar:'. "<br><br>". ' https://www.blueskylinemarketing.com/setup/verify.php?email='.$email.'&hash='.$hash."<br><br>".'Sincerely,'. "<br>". 'Oscar Estrada'. "<br>". '<i>Blue Skyline Marketing CEO</i>';
