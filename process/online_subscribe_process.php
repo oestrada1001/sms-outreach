@@ -81,77 +81,72 @@ if(!$db_connect){ //database cannot connection
         $insert_sql = "INSERT INTO $business_history_table (id,delivery_date, message_delivered, total_messages_sent) ";
         $insert_sql.= "VALUES (DEFAULT, '$today', '$business_default', '1') ";
     }
-    
-        if($row['visit_goal'] != null){
 
+    if($row['collect_emails'] == 'yes'){
+
+        $sql = "SELECT * FROM $business_name WHERE email = '$sub_email' OR phone_number = '$sub_cell' LIMIT 1";
+
+        $customer = mysqli_query($db_connect, $sql);
+
+        $test = mysqli_num_rows($customer);
+
+    
+    }elseif($row['collect_emails'] == 'no'){
+
+        $sql = "SELECT * FROM $business_name WHERE phone_number = '$sub_cell' LIMIT 1";
+
+        $customer = mysqli_query($db_connect, $sql);
+
+        $test = mysqli_num_rows($customer);
+
+    }
+
+    if($test == 1){
+
+        if($sub_email == null){
+
+            echo "This number is already registered in our system.";
+            exit;
             
         }else{
             
-            if($row['collect_emails'] == 'yes'){
-                
-                $sql = "SELECT * FROM $business_name WHERE email = '$sub_email' OR phone_number = '$sub_cell' LIMIT 1";
-                
-                $customer = mysqli_query($db_connect, $sql);
-                
-                $test = mysqli_num_rows($customer);
-                
-            
-            }elseif($row['collect_emails'] == 'no'){
-                
-                $sql = "SELECT * FROM $business_name WHERE phone_number = '$sub_cell' LIMIT 1";
-                
-                $customer = mysqli_query($db_connect, $sql);
-                
-                $test = mysqli_num_rows($customer);
-                
-            }
+            echo "This number or email is already registered in our system.";
+            exit;
 
-            if($test == 1){
-                
-                if($sub_email == null){
-                    
-                    echo "This number is already registered in our system.";
-                    exit;
-                    
-                }else{
-                    
-                    echo "This number or email is already registered in our system.";
-                    exit;
-                    
-                }
-                
-            }else{
-                
-                $sql = "INSERT INTO $business_name (id, name, phone_number, email, visit, last_check_in, registration_date, confirmed) ";
-                $sql.= "VALUES (DEFAULT, '$sub_name', '$sub_cell', '$sub_email', 0, 0000-00-00, NOW(), DEFAULT)";
-                
-                //insert record
-                if(mysqli_query($db_connect, $sql)){
-                    
-                    $sub_cell = str_replace($remove, '',$sub_cell);
-                    
-                    $sub_cell = '+1'.$sub_cell;
-                    $default_message = $row['default_message'] . "\n\n Please reply with 'Yes' to complete your subscription. \n\n To unsubscribe reply with STOP or HELP for more infomation.";
-                    $client->messages->create(
-                        $sub_cell,
-                        array(
-                            'messagingServiceSid' => "$clients_MSiD",
-                            'body' => $default_message,
-                        )
-                    );
-                    
-                    //Getting insert_sql from top
-                    mysqli_query($db_connect, $insert_sql);
-                    
-                    echo 'Thank you for subscribing. We will be sending you a confirmation text so be sure to text <b>YES</b> to the message you will receive in order to complete your subscription.';
-                    exit;
-                }
-                
-            } 
-    
+        }
+
+    }else{
+
+        $sql = "INSERT INTO $business_name (id, name, phone_number, email, visit, last_check_in, registration_date, confirmed) ";
+        $sql.= "VALUES (DEFAULT, '$sub_name', '$sub_cell', '$sub_email', 0, 0000-00-00, NOW(), DEFAULT)";
+
+        //insert record
+        if(mysqli_query($db_connect, $sql)){
+
+            $sub_cell = str_replace($remove, '',$sub_cell);
+
+            $sub_cell = '+1'.$sub_cell;
+            $default_message = $row['default_message'] . "\n\n Please reply with 'Yes' to complete your subscription. \n\n To unsubscribe reply with STOP or HELP for more infomation.";
+            $client->messages->create(
+                $sub_cell,
+                array(
+                    'messagingServiceSid' => "$clients_MSiD",
+                    'body' => $default_message,
+                )
+            );
+
+            //Getting insert_sql from top
+            mysqli_query($db_connect, $insert_sql);
+
+            echo 'Thank you for subscribing. We will be sending you a confirmation text so be sure to text <b>YES</b> to the message you will receive in order to complete your subscription.';
+            exit;
         }
 
     }
+
+
+
+}
 
 
 ?>
