@@ -323,7 +323,7 @@ if(!isset(\$row['subscription_message']) && !isset(\$row['loyalty_message'])){
             
         }
         
-        xmlhttp.open('POST', '../process/online_subscribe_process.php?sub_name='+sub_name+'&sub_cell='+sub_cell+'&sub_email='+sub_email, true);
+        xmlhttp.open('POST', '../process/online_subscribe_process.php', true);
         xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); xmlhttp.send('sub_name='+sub_name+'&sub_cell='+sub_cell+'&sub_email='+sub_email);
         
     });
