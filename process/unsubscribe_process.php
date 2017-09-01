@@ -8,7 +8,7 @@ if(!isset($row['email'])){
     header("location: ../logout.php");
 }
 
-$email = $_POST['email'];
+$email = trim($_POST['email']);
 
 if(!preg_match($valid_email, $email)){
     echo 404;
