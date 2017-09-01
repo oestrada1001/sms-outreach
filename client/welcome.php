@@ -393,7 +393,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
         
         xmlhttp.open("POST", "../process/verify_password.php", true);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlhttp.send("verify_key="+verify_key);
+        xmlhttp.send("verify_key="+verify_key+"&fingerprint="+fingerprint);
         
     }); 
     
