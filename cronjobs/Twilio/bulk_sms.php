@@ -142,7 +142,7 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
                             
                             $to = 'o.estrada1001@gmail.com';
                             $subject = 'BSM | BULK SMS ERROR';
-                            $message = $e;
+                            $message = '<pre>' . print_r($e, true) . '</pre>';
                             
                             $headers  = "From: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n"; 
                             $headers .= "X-Sender: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n";
@@ -159,17 +159,10 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
                     
                     
                 }catch(Exception $a){
-                    
-                    
-                    if(isset($error_count)){
-                        $error_count++;
-                    }else{
-                        $error_count = 1;
-                    }
-                    
+
                     $to = 'o.estrada1001@gmail.com';
                     $subject = 'BSM | BULK SMS ERROR';
-                    $message = $a;
+                    $message = '<pre>' . print_r($a, true) . '</pre>';
                     
                     $headers  = "From: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n"; 
                     $headers .= "X-Sender: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n";
@@ -183,7 +176,7 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
                     
                 }
                 
-                if($isset($count)){
+                if(isset($count)){
                     $count++;
                 }else{
                     $count = 1;
@@ -217,8 +210,7 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
 }catch(Exception $g){
     $to = 'o.estrada1001@gmail.com';
     $subject = 'BSM | BULK SMS ERROR';
-    $message = $g;
-    $message.= print_r($g);
+    $message = '<pre>' . print_r($g, true) . '</pre>';
 
     $headers  = "From: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n";
     $headers .= "X-Sender: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n";

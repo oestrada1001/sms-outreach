@@ -6,6 +6,8 @@ require_once('public_html/twilio-php-master/Twilio/autoload.php');
 
 use Twilio\Rest\Client;
 
+try{
+
 $scheduled_sms = "SELECT * FROM clients";
 
 if($results = mysqli_query($db_connect, $scheduled_sms)){
@@ -47,6 +49,12 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
             
             $max_amount = $max_amount - $sms_total_result;
             
+            //Retrieve Clients MSiD
+            $clients_twilio_sql = "SELECT * FROM twilio_service WHERE email = '$subscriber_email'";
+            $clients_twilio_results = mysqli_query($db_connect, $clients_twilio_sql);
+            $clients_twilio = mysqli_fetch_array($clients_twilio_results, MYSQLI_ASSOC);
+            $client_MSiD = $clients_twilio['message_service_id'];
+
             while($customer = $customer_results->fetch_array()){
                 
                 if(!isset($count)){
@@ -64,7 +72,7 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
                     $client->messages->create(
                         $client_number,
                         array(
-                            'messagingServiceSid' => 'MG8d8c7a3e572bd31e29103c7d3476da20',
+                            'messagingServiceSid' => $client_MSiD,
                         'body' => $alert_message,
                         )
                     );
@@ -105,7 +113,7 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
                         $client->messages->create(
                             $customer_number,
                             array(
-                                'messagingServiceSid' => 'MG8d8c7a3e572bd31e29103c7d3476da20',
+                                'messagingServiceSid' => $client_MSiD,
                             'body' => $business_message,
                             )
                         );
@@ -118,16 +126,10 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
                     }
                     
                 }catch(Exception $e){
-                    
-                    if(isset($error_count)){
-                        $error_count++;
-                    }else{
-                        $error_count = 1;
-                    }
-                    
+
                     $to = 'o.estrada1001@gmail.com';
                     $subject = 'BSM | INACTIVE SMS ERROR';
-                    $message = $e;
+                    $message = '<pre>' . print_r($e, true) . '</pre>';
                     
                     $headers  = "From: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n"; 
                     $headers .= "X-Sender: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n";
@@ -140,30 +142,25 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
                     @mail($to,$subject,$message,$headers);
                     
                 }
+
+                //This is Testing. Remember how try/catch/finally work and take into consideration that after the loop the code continues. Good luck future Oscar. You will be successful, never give up on your dream.
                 
-                if(isset($count)){
-                    $count++;
-                }else{
-                    $count = 1;
-                }
+                $email = $sender['email'];
+                $businessName = $sender['business_name'];
+                $businessMessage = $sender['after_message'];
+                $business_history_table = $business_name . "_message_history";
+                $today = date('Y-m-d');
+
+                $count_sql = "UPDATE $business_history_table SET total_messages_sent = '$count' WHERE message_delivered = '$businessMessage' AND delivery_date ='$today'";
+
+                mysqli_query($db_connect, $count_sql);
                 
             }
             
         }else{
             mysqli_error($db_connect);
         }
-        
-        //This is Testing. Remember how try/catch/finally work and take into consideration that after the loop the code continues. Good luck future Oscar. You will be successful, never give up on your dream. 
-        
-        $email = $sender['email'];
-        $businessName = $sender['business_name'];
-        $businessMessage = $sender['after_message'];
-        $business_history_table = $business_name . "_message_history";
-        $today = date('Y-m-d');
-        
-        $count_sql = "UPDATE '$business_history_table' SET total_messages_sent = '$count' WHERE message_delivered = '$businessMessage' AND delivery_date ='$today'";
-        
-        mysqli_query($db_connect, $count_sql);          
+
         
         
     
@@ -171,6 +168,21 @@ if($results = mysqli_query($db_connect, $scheduled_sms)){
     
 }else{
     mysqli_error($db_connect);
+}
+}catch(Exception $g){
+    $to = 'o.estrada1001@gmail.com';
+    $subject = 'BSM | INACTIVE SMS ERROR';
+    $message = '<pre>' . print_r($g, true) . '</pre>';
+
+    $headers  = "From: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n";
+    $headers .= "X-Sender: Blue Skyline Marketing <contact@blueskylinemarketing.com>\r\n";
+    $headers .= 'X-Mailer: PHP/' . phpversion();
+    $headers .= "X-Priority: 1\r\n"; // Urgent message!
+    $headers .= "Return-Path: contact@blueskylinemarketing.com\r\n "; // Return path for errors
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=iso-8859-1\n";
+
+    mail($to,$subject,$message,$headers);
 }
 
 ?>
