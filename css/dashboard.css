@@ -61,15 +61,31 @@ hr{
     vertical-align:middle;      
 }
 /*Loader*/
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+    z-index: 99999999;
+}
+.loader_container{
+    position: absolute;
+    background-color: black;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,.7);
+}
 #loader{
     position:relative;
     z-index: 10;    
 }
 #loader img{
-    position:absolute;
-    top: -50px;
-    left: 120px;
-    
+    position:relative;
+}
+.hideLoader{
+    display: none;
 }
 /*Login Page*/
 .login-box-msg{

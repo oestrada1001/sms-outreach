@@ -37,9 +37,9 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <script src="plugins/pace/pace.min.js"></script>
   <link rel="stylesheet" href="plugins/pace/themes/blue/pace-theme-minimal.css" type="text/css">
   <link rel='stylesheet' href="css/dashboard.css" type="text/css">
-  <script src="plugins/pace/pace.min.js"></script>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -55,7 +55,6 @@
         <input type="email" class="form-control" placeholder="Email" name="login_user" id="loginUser">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-      <div id="loader"></div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password" id="loginPassword" name="login_password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -71,11 +70,15 @@
     </form>
 
 
-
   </div>
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+<div id="loader_overlay" class="overlay hideLoader">
+   <div id="loader_container" class="loader_container">
+      <div id="loader"><img src='img/ajax-loader1.gif'></div>
+   </div>
+</div>
 
 <!-- jQuery 3.1.1 -->
 <script src="plugins/jQuery/jquery-3.1.1.min.js"></script>
@@ -84,6 +87,7 @@
 <!-- iCheck -->
 <script src="plugins/iCheck/icheck.min.js"></script>
 <script src="validation/front_end_validation.js"></script>
+<script src="js/functions.js"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -91,13 +95,15 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
+
+    setup_loader();
+
     
     $("#btn-login").on('click', function(e){
         e.preventDefault();
         $('#error').empty();
         $("#btn-login").prop("disabled", true);
-        
-        
+
         var email = $('#loginUser').val();
         var password = $('#loginPassword').val();
         
@@ -111,21 +117,22 @@
             $('#btn-login').prop("disabled", false);
             return;
         }
-        
+
+        start_loader();
         
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                
-                //Loader
-                
+
                 if(xmlhttp.responseText != 404){
-                
+                    loading_successful();
+
                     window.location.href = xmlhttp.responseText;
                 }else{
+                    loading_failed();
                     
-                        $('#error').append("<i class='fa fa-times-circle'></i>Email or password is not valid.");
-                        $('#btn-login').prop("disabled", false);
+                    $('#error').append("<i class='fa fa-times-circle'></i>Email or password is not valid.");
+                    $('#btn-login').prop("disabled", false);
                     
                 }
             }

@@ -104,6 +104,11 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
   <script src="../dist/client.min.js"></script>
 </head>
 <body class="hold-transition register-page">
+<div id="loader_overlay" class="overlay hideLoader">
+   <div id="loader_container" class="loader_container">
+      <div id="loader"><img src='../img/ajax-loader1.gif'></div>
+   </div>
+</div>
     <div class="row">
         <div class="rightOut">
            <a id="passVery" class="btn btn-primary" data-toggle="modal" data-target="#toDashboard">Dashboard</a>
@@ -264,6 +269,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
 <script src="../plugins/iCheck/icheck.min.js"></script>
 <script src="../validation/front_end_validation.js"></script>
 <script src="../js/no-back.js"></script>
+<script src="../js/functions.js"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -271,7 +277,10 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
+
+    setup_loader();
       
+
       
     // Create A New Client Object
 	var client = new ClientJS();
@@ -326,7 +335,9 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
                 return;
             }
         }
-            
+
+        start_loader();
+
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
             if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
@@ -341,6 +352,8 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
                 
                 if(responseNumber == 411){
                     
+                    loading_failed();
+
                     $('#subResponse').append("Sorry for the inconvenience, please have one of our team members log back in.");
                     $("#subModal").modal();
                      
@@ -350,6 +363,7 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
                     return;
                 }else{
                     
+                    loading_successful();
                     $('#subResponse').append(xmlhttp.responseText);
                     $("#subModal").modal();
                     
@@ -367,7 +381,8 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
     });
       
     $('#passVery').on('click', function(){
-        $('#error').empty();
+        $('#error1').empty();
+        $("#verify_key").val('');
     })  
       
     $("#btn-verify").on('click', function(e){
@@ -375,15 +390,22 @@ if(!isset($row['subscription_message']) && !isset($row['loyalty_message'])){
         $('#btn-verify').prop("disabled", true);
         $('#error1').empty();
         var verify_key = $("#verify_key").val();
+        start_loader();
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 if(xmlhttp.responseText == 404){
                     //Error
+
+                    loading_failed();
+
                      $('#error1').append("<i class='fa fa-times-circle'></i>Invalid Password. Please try again.");
                     
                     $('#btn-verify').prop("disabled", false);
                 }else{
+
+                    loading_successful();
+
                     window.location.href = xmlhttp.responseText;
                     
                     $('#btn-verify').prop("disabled", false);

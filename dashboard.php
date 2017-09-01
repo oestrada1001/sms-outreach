@@ -64,6 +64,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="css/dashboard.css" type="text/css">
   <script src='dist/client.min.js'></script>
 </head>
+<div id="loader_overlay" class="overlay hideLoader">
+   <div id="loader_container" class="loader_container">
+      <div id="loader"><img src='img/ajax-loader1.gif'></div>
+   </div>
+</div>
 <!--
 BODY TAG OPTIONS:
 =================
@@ -249,6 +254,7 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 <script src="validation/front_end_validation.js"></script>
+<script src="js/functions.js"></script>
 <script type="text/javascript">
     
     $(document).ready(function() {
@@ -257,6 +263,8 @@ desired effect
         var fingerprint = clientBrowser.getFingerprint();
         var reAuthX = <?php echo json_encode($reAuthX); ?>;
         
+        setup_loader();
+
         //AuthX Process
         $("#subscription-form").on('click', function(e){
             e.preventDefault();
@@ -422,20 +430,28 @@ desired effect
             $('.'+type+' #success').empty();
             $('.'+type+' #error').empty();
             
+            start_loader();
+
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                     
                     if(xmlhttp.responseText == 404){
                         
+                        loading_failed();
+
                         $('.'+type+' #error').html("<i class='fa fa-times-circle'></i>Please use correct format.");
                         
                     }else if(xmlhttp.responseText == 606){
                         
+                        loading_failed();
+
                         $('.'+type+' #error').html("<i class='fa fa-times-circle'></i>We are having problems with our system, if this continues please contact us.");
                         
                     }else if(xmlhttp.responseText !== 606 ||xmlhttp.responseText !== 404){
                         
+                        loading_successful();
+
                         $('.'+type+' #success').html("<i class='fa fa-check-circle'></i>"+xmlhttp.responseText);
                         
                     }
@@ -453,9 +469,14 @@ desired effect
         function sms_null(type){
             var type = type;
             
+            start_loader();
+
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
+
+                    loading_successful();
+
                     var htmltag = document.getElementById('mainContent');
                         var attr = document.createAttribute("w3-include-html");
                         attr.value = xmlhttp.responseText;
@@ -477,6 +498,8 @@ desired effect
         function setTextsMonthly(number){
             var numberOfText = number;
             
+            start_loader();
+
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
@@ -485,14 +508,23 @@ desired effect
                     
                     switch(response){
                         case 404:
+
+                            loading_failed();
+
                             $('.monthly_texts #error').html("<i class='fa fa-times-circle'></i>We are currently have problems. Please try again in a few minutes or contact us.");
                             $('#set_monthly_texts').prop('disabled', false);
                             break;
                         case 606:
+
+                            loading_failed();
+
                             $('.monthly_texts #error').html("<i class='fa fa-times-circle'></i>Please enter a number.");
                             $('#set_monthly_texts').prop('disabled', false);
                             break;
                         case 101:
+
+                            loading_successful();
+
                             $('.monthly_texts #success').html("<i class='fa fa-check-circle'></i>Number of Text Messages/Monthly has been set. This page will now reload in a few seconds.");
                             
                             setTimeout(function(){
@@ -850,18 +882,25 @@ desired effect
                     collect_emails_answer = 'no';
                 }
                 
+                start_loader();
+
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function(){
                     if(this.readyState == 4 && this.status == 200){
                         
                         if(xmlhttp.responseText == 404){
                             
+                            loading_failed();
+
                             $('.collect_emails_box #error').html("<i class='fa fa-times-circle'></i>We seem to be having a problem. Please contact us if this problem continues.");   
                             
                              $("#set_collect_emails").prop("disabled", false);
                             
                             
                         }else{
+
+                            loading_successful();
+
                             $('.collect_emails_box #success').html("<i class='fa fa-check-circle'></i>The request was successful. You will now be redirected.")
                             
                             setTimeout(function(){
@@ -897,6 +936,8 @@ desired effect
                     return;
                 }
                 
+                start_loader();
+
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function(){
                     if(this.readyState == 4 && this.status == 200){
@@ -904,17 +945,29 @@ desired effect
                         var response = Number(xmlhttp.responseText);
                         
                         if(response == 606){
+
+                            loading_failed();
+
                             $('.subscription_link #error').html("<i class='fa fa-times-circle'></i>Link already taken. Please try again.");
                             $('#set_subscription_link').prop("disabled", false);
                             return;
                         }else if(response == 404){
+
+                            loading_failed();
+
                             $('.subscription_link #error').html("<i class='fa fa-times-circle'></i>We are currently having problems. Please try again later.");
                             $('#set_subscription_link').prop("disabled", false);
                         }else if(response == 303){
+
+                            loading_failed();
+
                             $('.subscription_link #error').html("<i class='fa fa-times-circle'></i>Invalid Format.");
                             $('#set_subscription_link').prop("disabled", false);
                             return;     
                         }else if(response == 101){
+
+                            loading_successful();
+
                             $('.subscription_link #success').html("<i class='fa fa-check-circle'></i>Link successfully made. You will now be redirected. If not, refresh the page.");
                             
                             setTimeout(function(){
