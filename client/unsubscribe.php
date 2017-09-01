@@ -52,11 +52,11 @@ if($client_verification == 'denied'){
             
             
             
-            xmlhttp = new XMLHttpRequest();
+            var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if(xmlhttp.readyState = 4 && xmlhttp.status == 200){
                     
-                    var response = xmlhttp.responseText;
+                    var response = parseInt(xmlhttp.responseText);
                     
                     if(response == 101){
                         success.innerHTML = "<i class='fa fa-check-circle'></i>You have been successfully unsubscribed. You will not be redirected";

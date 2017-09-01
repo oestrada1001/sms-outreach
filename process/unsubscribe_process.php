@@ -30,11 +30,11 @@ $client_subscription = $stripe_client['subscriber_id'];
         mysqli_query($db_connect, $downgrade_access_sql);
         
         echo 101;
-
+        exit;
     }catch(Exception $e){
         
         echo 404;
-        
+        exit;
     }
 
 
