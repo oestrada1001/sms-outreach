@@ -1,11 +1,11 @@
 <?php
+require_once('../db_links.php');
 require_once('../stripe4-x/stripe-php-4.13.0/init.php');
 require_once('../twilio-php-master/Twilio/autoload.php');
 require_once('../cronjobs/Twilio/twilio_keys.php');
-require_once('../session.php');
 require_once('../functions.php');
 require_once('../validation/back_end_validation.php');
-//\Stripe\Stripe::setApiKey("sk_test_uYkMFP68T1v4WkducM4LWDO0");
+
 \Stripe\Stripe::setApiKey("sk_live_1teGqmhHeAwmjkmdkINqxbqp");
 
 use Twilio\Rest\Client;
@@ -192,7 +192,7 @@ if(!$db_connect){
             $addingNumber = $twilio->messaging->v1->services("$MSiD")->phoneNumbers->create("$PNiD");
 
             //Actual Phone Number
-            $actual_number = $purchase_number->phoneNumber
+            $actual_number = $purchase_number->phoneNumber;
 
             $twilio_sql = "INSERT INTO twilio_service (id, business_name, email, message_service_id, initial_phone_number) ";
             $twilio_sql.= "VALUES (DEFAULT, '$businessName', '$email', '$MSiD', '$actual_number')";
@@ -213,8 +213,9 @@ if(!$db_connect){
             
             mail($to,$subject,$message,$headers);
             
-            $_SESSION['email'] = $email;
+            $_SESSION['first_time_email'] = $email;
             $_SESSION['count'] = 'clients';
+            $_SESSION['first_name'] = $first_name;
             
             header('location: ../setup/confirmAccount.php');
             exit;

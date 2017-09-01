@@ -1,7 +1,8 @@
 <?php
-require_once '../session.php';
+require_once '../db_links.php';
 require_once '../functions.php';
 require_once 'header.php';
+session_start();
 
 $_SESSION['plan'] = null;
 $plan = $_GET['plan'];
@@ -121,15 +122,11 @@ $_SESSION['subscription_type'] = $_GET['plan'];
   <script src="https://js.stripe.com/v3/"></script>
   <script>
       (function(){
-          
-          
-          
-          
+
           $('#myCarousel').carousel({
               interval: 4000
           });
-                        
-//          var stripe = Stripe('pk_test_34RoVWFJwUqy5QWraJicQmBv');
+
           var stripe = Stripe('pk_live_dCTBrBZRkyx9187EDyUTVfye');
           var elements = stripe.elements();
           
