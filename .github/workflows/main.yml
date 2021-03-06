@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install Dependencies
+        uses: php-actions/composer@v5
+        with:
+          dev: no
+          php_version: 7.2
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DB_HOST: ${{ secrets.DB_HOST }}
+          envkey_DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          envkey_DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          envkey_DB_PASSWORD: ${{ secrets.DB_PASSWORD}}
+          file_name: .env
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+            SSH_PRIVATE_KEY: ${{ secrets.DIGITAL_OCEAN_PRIVATE_KEY }}
+            ARGS: "-zr"
+            SOURCE: ""
+            REMOTE_HOST: ${{ secrets.DIGITAL_OCEAN_SERVER }}
+            REMOTE_USER: ${{ secrets.DIGITAL_OCEAN_USER }}
+            TARGET: "/var/www/sms-outreach/"
