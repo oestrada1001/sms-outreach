@@ -1,18 +1,17 @@
 <?php
 
-define('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_PASS','root');
-define('DB_DATA','dbregistration');
+require 'vendor/autoload.php';
 
-//define('DB_HOST','localhost');
-//define('DB_USER','bluewgsx');
-//define('DB_PASS','41xl0yo4fdm');
-//define('DB_DATA','bluewgsx_dbregistration');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 date_default_timezone_set('America/Los_Angeles');
 
-
-$db_connect = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATA);
+$db_connect = mysqli_connect(
+    $_ENV['DB_HOST'], 
+    $_ENV['DB_USERNAME'], 
+    $_ENV['DB_PASSWORD'], 
+    $_ENV['DB_DATABASE']
+);
 
 ?> 

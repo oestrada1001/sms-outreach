@@ -2,6 +2,8 @@
 *.log
 *.zip
 .idea
+.env
+vendor/
 .sass-cache/
 /nbproject/
 /nbproject/private/
