@@ -1,4 +1,3 @@
-
 RewriteEngine on
 AuthName "Blue Skyline Marketing"
 AuthUserFile "/home/bluewgsx/.htpasswds/public_html/passwd"
@@ -12,3 +11,8 @@ RewriteCond %{HTTP_HOST} ^www\.blueskylinemarketing\.com$
 RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
 RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 RewriteRule ^admin\/?(.*)$ "https\:\/\/www\.blueskylinemarketing\.com\/$1" [R=301,L]
+
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
