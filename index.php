@@ -173,6 +173,7 @@ $category_list = [
 
 
       </div>
+      <h1 class="jumbotron">Hello World</h1>
       <div class="col-md-8 wow fadeInDown" id="screen_slide" data-wow-delay="0.5s">
         
          <div id="app_carousel" class="carousel slide">
